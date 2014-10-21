@@ -1,3 +1,5 @@
+# Andre Haas
+
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
@@ -25,5 +27,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: password }
     end
     assert_template 'users/show'
+    assert is_logged_in?
   end
 end

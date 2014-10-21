@@ -1,3 +1,5 @@
+<!-- Andre Haas -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +9,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <div class="container">
-    <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    <% end %>
-    <%= yield %>
-    <%= debug(params) if Rails.env.development? %>
-  </div>
-
+  <% flash.each do |message_type, message| %>
+    <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+  <% end %>
+  <%= yield %>
+  <br/>
+  <%= debug(params) if Rails.env.development? %>
 </body>
 </html>
