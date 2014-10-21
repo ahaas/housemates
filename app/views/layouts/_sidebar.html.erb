@@ -1,0 +1,17 @@
+<!-- Andre Haas -->
+
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <div><a href="#">Housemates</a></div>
+      <div>
+        <%= gravatar_for current_user, size: 32 %>
+        <%= link_to current_user.name, current_user %>
+      </div>
+    </li>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Finance</a></li>
+    <li><a href="#">Settings</a></li>
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+  </ul>
+</div>
