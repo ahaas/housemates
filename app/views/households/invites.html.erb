@@ -13,20 +13,25 @@ TEST SHOW INVITES VIEW
 <html>
 <%= stylesheet_link_tag "invites" %>
   <body>
-    <h1> Housemates </h1>
-      <div class= "pending_invites">
-        <ul>
-          <li class = "invite"> Davis House
-            <button class= "btn btn-primary">Accept</button>
-          </li>
-          <li class = "invite"> Euclid Home
-            <button class= "btn btn-primary">Accept</button>
-          </li>
-        </ul>
-      <h2> -OR- </h2>
-       <div class = "new_household">
-        <%= button_to "Create New household", create_household_path, :class => "btn btn-primary", :method => :get %>
+  <h1> Invitations </h1>
+    <div class="row">
+      <div class = "col-md-6 col-md-offset-3">
+        <div class = "pending_invites">
+          <ul>
+            <li class = "household"> Davis House
+              <button class= "btn btn-primary">Accept</button>
+            </li>
+            <li class = "household"> Euclid Home
+              <button class= "btn btn-primary">Accept</button>
+            </li>
+          </ul>
+        </div>
+        <h2> -OR- </h2>
+        <div class = "household">
+          <%= button_to "Create New Household", create_household_path, :class => "btn btn-primary btn-household", :method => :get %>
+        </div>
       </div>
+    </div>
   </body> 
 </html>
 >>>>>>> aa05abc... Some css code
