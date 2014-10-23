@@ -29,4 +29,6 @@ class HouseholdsController < ApplicationController
       render 'new', layout: 'basic'
     end
   end
+  
+  
 end

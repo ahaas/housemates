@@ -46,6 +46,10 @@ class InviteTest < ActiveSupport::TestCase
   test "email should be downcase after save" do
     @i.email = "TOM@TOM.COM"
     @i.save
-    assert @i.email = "tom@tom.com"
+    assert_equal "tom@tom.com", @i.email
+  end
+  
+  test "has many invites" do
+    assert_equal @hh.invites.count, 1
   end
 end
