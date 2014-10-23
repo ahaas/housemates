@@ -16,8 +16,7 @@ TEST SHOW INVITES VIEW
   <h1> Invitations </h1>
     <div class="row">
       <div class = "col-md-6 col-md-offset-3">
-        <div class = "pending_invites">
-          <ul>
+          <ul class = "pending-invites">
             <li class = "household"> Davis House
               <button class= "btn btn-primary">Accept</button>
             </li>
@@ -25,7 +24,6 @@ TEST SHOW INVITES VIEW
               <button class= "btn btn-primary">Accept</button>
             </li>
           </ul>
-        </div>
         <h2> -OR- </h2>
         <div class = "household">
           <%= button_to "Create New Household", create_household_path, :class => "btn btn-primary btn-household", :method => :get %>

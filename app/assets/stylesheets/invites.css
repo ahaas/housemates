@@ -1,8 +1,10 @@
-ul {
+.pending-invites {
   list-style: none;
   margin-bottom: 0px;
   padding-left: 0px;
 }
+
+
 
 h1 {
   text-align: center;
@@ -15,6 +17,7 @@ h2 {
 
 .household {
   padding: 15px 0px 15px 0px;
+  text-align: center;
 }
 
 .btn-household{
