@@ -11,13 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022225458) do
+ActiveRecord::Schema.define(version: 20141023170828) do
 
   create_table "households", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "invites", force: true do |t|
+    t.integer  "household_id"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invites", ["household_id"], name: "index_invites_on_household_id"
+
+  create_table "transaction_groups", force: true do |t|
+    t.string   "name"
+    t.decimal  "total_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.integer  "payer_id"
+    t.integer  "payee_id"
+    t.integer  "household_id"
+    t.integer  "transaction_group_id"
+    t.boolean  "is_payback"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["household_id"], name: "index_transactions_on_household_id"
+  add_index "transactions", ["payee_id"], name: "index_transactions_on_payee_id"
+  add_index "transactions", ["payer_id"], name: "index_transactions_on_payer_id"
+  add_index "transactions", ["transaction_group_id"], name: "index_transactions_on_transaction_group_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
