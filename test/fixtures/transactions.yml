@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payer_id: 
+  payee_id: 
+  household_id: 
+  transaction_group_id: 
+  is_payback: false
+  amount: 9.99
+
+two:
+  payer_id: 
+  payee_id: 
+  household_id: 
+  transaction_group_id: 
+  is_payback: false
+  amount: 9.99
