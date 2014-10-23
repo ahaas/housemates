@@ -6,7 +6,7 @@
       <div><%= link_to "Housemates", homepage_for(current_user) %></div>
       <div>
         <%= gravatar_for current_user, size: 32 %>
-        <%= link_to current_user.name, current_user %>
+        <%= current_user.name %>
       </div>
     </li>
     <li><a href="#">Home</a></li>
