@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get  'invites'  => 'households#invites'
   get  'create_household'   => 'households#new'
   post 'create_household'   => 'households#create'
+  post 'create_invite' => 'invites#create'
 
   get 'home'      => 'households#show'
 

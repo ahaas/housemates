@@ -2,5 +2,6 @@
 
 class Household < ActiveRecord::Base
   has_many :users
+  has_many :invites
   validates :name, presence: true, length: {maximum: 64}
 end
