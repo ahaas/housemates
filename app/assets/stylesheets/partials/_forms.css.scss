@@ -1,5 +1,27 @@
 /* Andre Haas */
 
+.form-background {
+  background-color: #f7f7f7;
+  width: 40%;
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 15px;
+}
+
+.header {
+  text-align: center;
+}
+
+.signup {
+  width: 75%;
+  margin: 0 auto;
+
+  input {
+    padding: 6px 0px;
+  }
+}
+
 #error_explanation {
   color: red;
   ul {
