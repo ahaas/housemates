@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- Kevin Sung -->
 TEST SHOW INVITES VIEW
 
@@ -8,3 +9,24 @@ TEST SHOW INVITES VIEW
 </div>
 
 <%= link_to "Create a household", households_create_path %>
+=======
+<html>
+<%= stylesheet_link_tag "invites" %>
+  <body>
+    <h1> Housemates </h1>
+      <div class= "pending_invites">
+        <ul>
+          <li class = "invite"> Davis House
+            <button class= "btn btn-primary">Accept</button>
+          </li>
+          <li class = "invite"> Euclid Home
+            <button class= "btn btn-primary">Accept</button>
+          </li>
+        </ul>
+      <h2> -OR- </h2>
+       <div class = "new_household">
+        <%= button_to "Create New household", create_household_path, :class => "btn btn-primary", :method => :get %>
+      </div>
+  </body> 
+</html>
+>>>>>>> aa05abc... Some css code
