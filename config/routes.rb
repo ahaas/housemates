@@ -1,12 +1,21 @@
-Rails.application.routes.draw do
-  get 'sessions/new'
+# Andre Haas
 
-  root 'users#new'
-  get 'signup'  => 'users#new'
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+Rails.application.routes.draw do
+  # get 'sessions/new'
+
+  root   'users#new'
+  get    'signup' => 'users#new'
+  get    'login'  => 'sessions#new'
+  post   'login'  => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   resources :users
+
+  get  'invites'  => 'households#invites'
+  get  'create_household'   => 'households#new'
+  post 'create_household'   => 'households#create'
+
+  get 'home'      => 'households#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
