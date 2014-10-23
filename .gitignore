@@ -21,3 +21,6 @@ tmp/*
 *.DS_Store
 *.swp
 *.out
+
+# c9 file
+.c9
