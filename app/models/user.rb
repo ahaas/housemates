@@ -2,6 +2,7 @@
 
 class User < ActiveRecord::Base
   attr_accessor :remember_token
+  belongs_to :household
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 127 }
@@ -10,7 +11,8 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: {minimum: 6}
+  validates_presence_of :password, on: :create
+  validates_length_of :password, minimum: 6, allow_blank: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)

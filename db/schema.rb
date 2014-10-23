@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021223823) do
+ActiveRecord::Schema.define(version: 20141022225458) do
+
+  create_table "households", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -20,8 +26,10 @@ ActiveRecord::Schema.define(version: 20141021223823) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.integer  "household_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["household_id"], name: "index_users_on_household_id"
 
 end
