@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   post 'invites/accept' => 'invites#accept'
   post 'invites/create' => 'invites#create'
 
+  get 'transactions/new_item' => 'transactions#new_item'
+  get 'transactions/new_payback' => 'transactions#new_payback'
+  get 'transactions/show' => 'transactions#show'
+  post 'transactions/create' => 'transactions#create'
+
   get 'home'      => 'households#show'
 
   # The priority is based upon order of creation: first created -> highest priority.

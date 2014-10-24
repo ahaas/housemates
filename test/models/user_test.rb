@@ -76,4 +76,38 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?('')
   end
+
+  test "housemates method with no housemates" do
+    @hh = Household.create(name:"hh")
+    @user.household = @hh
+    @user.save
+    assert_equal 0, @user.housemates.count
+  end
+
+  test "housemates method with some housemates" do
+    @hh = Household.create(name:"hh")
+    @user.household = @hh
+    @u0 = @user
+    @u0.save
+    @u1 = User.create(name: "u1", email: "u1@example.com",
+                     password: "letmein", 
+                     password_confirmation: "letmein",
+                     household: @hh)
+    @u2 = User.create(name: "u2", email: "u2@example.com",
+                     password: "letmein", 
+                     password_confirmation: "letmein",
+                     household: @hh)
+    assert_equal 2, @u0.housemates.count
+    assert_equal 2, @u1.housemates.count
+    assert_equal 2, @u2.housemates.count
+    assert_not @u0.housemates.include? @u0
+    assert @u0.housemates.include? @u1
+    assert @u0.housemates.include? @u2
+    assert @u1.housemates.include? @u0
+    assert_not @u1.housemates.include? @u1
+    assert @u1.housemates.include? @u2
+    assert @u2.housemates.include? @u0
+    assert @u2.housemates.include? @u1
+    assert_not @u2.housemates.include? @u2
+  end
 end
