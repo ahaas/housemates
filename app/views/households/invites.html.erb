@@ -12,10 +12,10 @@ TEST SHOW INVITES VIEW
 =======
 <html>
   <body>
-  <h1> Invitations </h1>
-    <div class="row">
-      <div class="form-background"
-      <div class = "col-md-6 col-md-offset-3">
+    <div class="form-background">
+      <div class="row">
+        <h1> Invitations </h1>
+        <div class = "col-md-6 col-md-offset-3">
           <ul class = "pending-invites">
             <li class = "household"> Davis House
               <button class= "btn btn-primary">Accept</button>
@@ -24,11 +24,11 @@ TEST SHOW INVITES VIEW
               <button class= "btn btn-primary">Accept</button>
             </li>
           </ul>
-        <h2> -OR- </h2>
-        <div class = "household">
-          <%= button_to "Create New Household", create_household_path, :class => "btn btn-primary btn-household", :method => :get %>
+          <h2> -or- </h2>
+          <div class = "household">
+            <%= button_to "Create New Household", create_household_path, :class => "btn btn-primary btn-household", :method => :get %>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </body> 
