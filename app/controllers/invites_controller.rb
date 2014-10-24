@@ -8,10 +8,10 @@ class InvitesController < ApplicationController
     @invite.household = current_user.household
 
     if @invite.save
-      render 'households/show'
+      render 'households/show', layout: 'household'
     else
       flash.now[:danger] = 'Invalid email'
-      render 'households/show'
+      render 'households/show', layout: 'household'
     end
   end
 
