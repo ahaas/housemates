@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   resources :users
 
-  get  'invites'  => 'households#invites'
-  get  'create_household'   => 'households#new'
-  post 'create_household'   => 'households#create'
-  post 'create_invite' => 'invites#create'
+  get  'households/create'   => 'households#new'
+  post 'households/create'   => 'households#create'
+
+  get 'invites' => 'invites#show'
+  post 'invites/accept' => 'invites#accept'
+  post 'invites/create' => 'invites#create'
 
   get 'home'      => 'households#show'
 

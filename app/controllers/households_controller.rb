@@ -1,12 +1,8 @@
-# Andre Haas
+# Andre Haas, Kevin Sung
 
 class HouseholdsController < ApplicationController
 
   def show
-  end
-
-  def invites
-    render 'invites', layout: 'basic'
   end
 
   def new

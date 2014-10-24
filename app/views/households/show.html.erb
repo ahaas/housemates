@@ -1,3 +1,5 @@
+<!-- Kevin Sung and Andre Haas -->
+
 THIS IS THE HOUSEHOLDS HOME.
 
 You are in <%= current_user.household.name %>.
@@ -6,7 +8,7 @@ Members
 <ul class= "members">
   <% current_user.household.users.each do |member| %>
     <li>
-      <%= member.email %>    
+      <%= member.email %>
     </li>
   <% end %>
 </ul>
@@ -15,7 +17,7 @@ Invites
 <ul class= "invites">
   <% current_user.household.invites.each do |invite| %>
     <li>
-      <%= invite.email %>    
+      <%= invite.email %>
     </li>
   <% end %>
 </ul>
@@ -23,8 +25,7 @@ Invites
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:invite, url: create_invite_path) do |f| %>
-
+    <%= form_for(:invite, url: invites_create_path) do |f| %>
       <%= f.label :email %>
       <%= f.text_field :email, class: 'form-control' %>
 
