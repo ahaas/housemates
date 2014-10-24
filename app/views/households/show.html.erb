@@ -1,35 +1,37 @@
 <!-- Kevin Sung and Andre Haas -->
 
-THIS IS THE HOUSEHOLDS HOME.
-
-You are in <%= current_user.household.name %>.
-<br/>
-Members
-<ul class= "members">
-  <% current_user.household.users.each do |member| %>
-    <li>
-      <%= member.email %>
-    </li>
-  <% end %>
-</ul>
-
-Invites
-<ul class= "invites">
-  <% current_user.household.invites.each do |invite| %>
-    <li>
-      <%= invite.email %>
-    </li>
-  <% end %>
-</ul>
-
+<h1><%= current_user.household.name %> <small>Household</small></h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:invite, url: invites_create_path) do |f| %>
-      <%= f.label :email %>
-      <%= f.text_field :email, class: 'form-control' %>
+  <div class="col-md-6">
+    <h3>Members</h3>
+    <ul class= "members">
+      <% current_user.household.users.each do |member| %>
+        <li>
+          <%= member.email %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h3>Invites</h3>
+    <ul class= "invites">
+      <% current_user.household.invites.each do |invite| %>
+        <li>
+          <%= invite.email %>
+        </li>
+      <% end %>
+    </ul>
 
+    <%= form_for(:invite, url: invites_create_path, 
+                 html: {class: 'form-inline'}) do |f| %>
+      <%= content_tag :div, class: 'form-group' do %>
+        <%= f.label :email, class: 'sr-only' %>
+        <%= f.text_field :email, class: 'form-control',
+                                 placeholder: 'Enter Email' %>
+      <% end %>
       <%= f.submit "Invite", class: "btn btn-primary" %>
     <% end %>
+
   </div>
 </div>

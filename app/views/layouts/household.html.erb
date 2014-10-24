@@ -1,4 +1,5 @@
 <!-- Andre Haas -->
+
 <% if !logged_in? or !current_user.household %>
   <% raise "Household layout is only for users in a household!" %>
 <% end %>
