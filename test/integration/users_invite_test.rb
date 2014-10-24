@@ -1,4 +1,4 @@
-# Kevin Sung
+# Kevin Sung, David Tien
 
 require 'test_helper'
 
@@ -17,8 +17,8 @@ class UsersInviteTest < ActionDispatch::IntegrationTest
     log_in_as @user1, password: 'letmein'
     post invites_create_path, invite: {email: 'jane@gmail.com', household: @user1.household}
     assert_template 'households/show'
-    assert_select '[class=invites]' do |elements|
-      assert_select 'li', 'jane@gmail.com'
+    assert_select '[class=invite]' do |elements|
+      assert_select 'div', 'jane@gmail.com Pending'
     end
   end
   
@@ -28,8 +28,10 @@ class UsersInviteTest < ActionDispatch::IntegrationTest
     assert_template 'households/show'
     post invites_create_path, invite: {email: 'joe@example.com', household: @user1.household}
     assert_template 'households/show'
-    assert_select 'li', 'jane@example.com'
-    assert_select 'li', 'joe@example.com'
+    assert_select '[class=invite]' do |elements|
+      assert_select 'div', 'jane@example.com Pending'
+      assert_select 'div', 'joe@example.com Pending'
+    end
   end
   
   test "bad invite" do
