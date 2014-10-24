@@ -1,0 +1,37 @@
+<!-- Tom Lai and Andre Haas-->
+
+<% provide(:title, 'Add item') %>
+<h1>New item</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag(transactions_create_path, method: "post") do %>
+
+      <%= content_tag :div, class: 'form-group' do %>
+        <%= label_tag(:name, "name") %>
+        <%= text_field_tag :name, nil, class: 'form-control' %>
+      <% end %>
+
+      <%= content_tag :div, class: 'form-group' do %>
+        <%= label_tag(:amount, "amount") %>
+        <%= number_field_tag :amount, 0.0, options:{step: 1.0}, class: 'form-control' %>
+      <% end %>
+
+      <% current_user.household.users.each do |u| %>
+      <%= content_tag :div, class: 'checkbox' do %>
+        <label>
+          <% if u.name == current_user.name %>
+            <%= check_box_tag "payers[]", u.id, {checked: true}, class: 'form-group' %>
+            <%= u.name %>
+          <% else %>
+            <%= check_box_tag "payers[]", u.id, class: 'form-group' %>
+            <%= u.name %>
+          <% end %>
+          <% end %>
+        </label>
+      <% end %>
+      <%= hidden_field_tag('is_payback', '0') %>
+      <%= submit_tag "Add item", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
