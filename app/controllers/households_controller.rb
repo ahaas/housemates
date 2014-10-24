@@ -18,7 +18,8 @@ class HouseholdsController < ApplicationController
   def create
     @household = Household.new(name: params[:household][:name])
     if @household.save
-      current_user.update_attributes(household: @household)
+      current_user.household = @household
+      current_user.save
       flash[:success] = "Welcome to #{@household.name}!"
       redirect_to home_path
     else
