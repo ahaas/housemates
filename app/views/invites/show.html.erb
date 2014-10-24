@@ -1,9 +1,9 @@
 <!-- Kevin Sung and Andre Haas -->
-
-TEST SHOW INVITES VIEW
-
+<html>
+<body>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <h1> Invitations </h1>
     <%= form_tag invites_accept_path do %>
       <% @households.each do |household| %>
         <%= label_tag household.name %>
@@ -12,5 +12,9 @@ TEST SHOW INVITES VIEW
     <% end %>
   </div>
 </div>
-
-<%= link_to "Create a household", households_create_path %>
+<h1> -or- </h1>
+  <div class = "household">
+  <%= button_to "Create a Household", households_create_path, :class => "btn btn-primary", :method => :get %>
+  </div>
+</body>
+</html>
