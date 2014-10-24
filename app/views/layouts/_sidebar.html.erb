@@ -9,9 +9,8 @@
         <%= current_user.name %>
       </div>
     </li>
-    <li><a href="#">Home</a></li>
+    <li><%= link_to "Home", homepage_for(current_user) %></li>
     <li><a href="#">Finance</a></li>
-    <li><a href="#">Settings</a></li>
     <li><%= link_to "Log out", logout_path, method: "delete" %></li>
   </ul>
 </div>
