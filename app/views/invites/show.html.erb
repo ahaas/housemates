@@ -1,20 +1,24 @@
 <!-- Kevin Sung and Andre Haas -->
 <html>
-<body>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1> Invitations </h1>
-    <%= form_tag invites_accept_path do %>
-      <% @households.each do |household| %>
-        <%= label_tag household.name %>
-        <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-<h1> -or- </h1>
-  <div class = "household">
-  <%= button_to "Create a Household", households_create_path, :class => "btn btn-primary", :method => :get %>
-  </div>
-</body>
+  <body>
+  <nav class="navbar navbar-default" role="navigation">
+    <%= button_to "Log out", logout_path, :class => "btn btn-primary navbar-btn", method: "delete" %>
+  </nav>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1> Invitations </h1>
+        <%= form_tag invites_accept_path do %>
+          <% @households.each do |household| %>
+            <%= label_tag household.name %>
+            <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+        <h2> No pending invitations?</h2>
+        <h3>Create a household below:</h3>
+        <div class = "household">
+          <%= button_to "Create a Household", households_create_path, :class => "btn btn-primary", :method => :get %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
