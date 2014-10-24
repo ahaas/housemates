@@ -1,3 +1,10 @@
+<!-- Kevin Sung -->
 TEST SHOW INVITES VIEW
 
-<%= link_to "Create a household", create_household_path %>
+<div class="row">
+  <%= form_for(current_user.household.invites) do |invite| %>
+    <button type="button">Invite</button>
+  <% end %>
+</div>
+
+<%= link_to "Create a household", households_create_path %>
