@@ -4,9 +4,11 @@
   <ul class="sidebar-nav">
     <li class="sidebar-brand">
       <div><%= link_to "Housemates", homepage_for(current_user) %></div>
+    </li>
+    <li class="user">
       <div>
         <%= gravatar_for current_user, size: 32 %>
-        <%= current_user.name %>
+        <span><%= current_user.name %></span>
       </div>
     </li>
     <li><%= link_to "Home", homepage_for(current_user) %></li>
