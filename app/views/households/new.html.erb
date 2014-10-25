@@ -1,17 +1,30 @@
 <!-- Andre Haas -->
-
+<html>
 <% provide(:title, 'Create household') %>
+<<<<<<< HEAD
 <h1>Sign up</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@household, url: households_create_path) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
+=======
+  <body>
+    <div class="household-form-background">
+      <h1>Sign up</h1>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <%= form_for(@household, url: create_household_path) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+>>>>>>> 0c570e7... Template for create-household page
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.submit "Create household", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
+          <%= f.submit "Create household", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <body>
+</html>
