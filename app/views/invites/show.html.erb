@@ -1,27 +1,20 @@
-<!-- Kevin Sung and Andre Haas -->
-<html>
-  <body>
-  <nav class="navbar navbar-default" role="navigation">
-    <%= button_to "Log out", logout_path, :class => "btn btn-primary navbar-btn ", method: "delete" %>
-  </nav>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h1 class="text-center">Invitations</h1>
-        <% if @households.empty? %>
-          <h3 class="text-center">Create a household below:</h3>
-          <div class ="household text-center">
-            <%= button_to "Create a Household", households_create_path, :class => "btn btn-primary", :method => :get %>
-          </div>  
-        <% else %>
-          <h3 class="text-center">Join a household below:</h3>
-          <%= form_tag invites_accept_path do %>
-            <% @households.each do |household| %>
-              <%= label_tag household.name %>
-              <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
-            <% end %>
-          <% end %>
+<!-- Kevin Sung and Andre Haas and Opal Kale -->
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="text-center">Invitations</h1>
+    <% if @households.empty? %>
+      <h3 class="text-center">Create a household below:</h3>
+      <div class ="household text-center">
+        <%= button_to "Create a Household", households_create_path, :class => "btn btn-primary", :method => :get %>
+      </div>  
+    <% else %>
+      <h3 class="text-center">Join a household below:</h3>
+      <%= form_tag invites_accept_path do %>
+        <% @households.each do |household| %>
+          <%= label_tag household.name %>
+          <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
         <% end %>
-      </div>
-    </div>
-  </body>
-</html>
+      <% end %>
+    <% end %>
+  </div>
+</div>
