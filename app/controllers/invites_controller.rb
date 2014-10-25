@@ -24,6 +24,9 @@ class InvitesController < ApplicationController
       current_user.household = household
       current_user.save
       invite.destroy
+      current_user.housemates.each do |housemate|
+        Balance.create(user1: current_user, user2: housemate)
+      end
     end
     redirect_to homepage_for(current_user)
   end

@@ -1,6 +1,25 @@
-<!-- Tom Lai and Andre Haas-->
+<!-- Andre Haas, Tom Lai -->
 
 <% provide(:title, 'Transaction history') %>
+<h1>Balance</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Housemate</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @current_user.housemates.each do |hm| %>
+        <tr>
+            <td><%= hm.name %></td>
+            <td><%= Balance.get(current_user, hm) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<%= link_to "Add new item", transactions_new_item_path, class: 'btn btn-default' %>
+<%= link_to "Got paid back", transactions_new_payback_path, class: 'btn btn-default' %>
 <h1>Transaction history</h1>
 <table class="table table-striped">
     <thead>
@@ -26,5 +45,3 @@
         <% end %>
     </tbody>
 </table>
-<%= link_to "Add new item", transactions_new_item_path, class: 'btn btn-default' %>
-<%= link_to "Got paid back", transactions_new_payback_path, class: 'btn btn-default' %>
