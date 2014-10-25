@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023170828) do
+ActiveRecord::Schema.define(version: 20141024222952) do
+
+  create_table "balances", force: true do |t|
+    t.integer  "user1_id"
+    t.integer  "user2_id"
+    t.decimal  "amount",     default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "balances", ["user1_id"], name: "index_balances_on_user1_id"
+  add_index "balances", ["user2_id"], name: "index_balances_on_user2_id"
 
   create_table "households", force: true do |t|
     t.string   "name"

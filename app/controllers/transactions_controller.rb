@@ -35,20 +35,24 @@ class TransactionsController < ApplicationController
       flash[:danger] = transaction_group.errors.messages.keys[0].to_s + " " + 
         transaction_group.errors.messages.values[0][0]
     else
-      # create transaction
       params[:payers].each do |uid|
         payer = User.find_by_id(uid)
-        t = Transaction.new(
-          payer:payer, 
-          payee:current_user, 
-          household:current_user.household,
-          transaction_group: transaction_group,
-          is_payback: params[:is_payback].to_i, 
-          amount: params[:amount].to_f / params[:payers].count)
-        if not t.save
-          flash[:danger] = t.errors.messages.keys[0].to_s + " " + 
-          t.errors.messages.values[0][0]
-          break
+        if not payer == current_user
+          # create transaction record
+          t = Transaction.new(
+            payer:payer, 
+            payee:current_user, 
+            household:current_user.household,
+            transaction_group: transaction_group,
+            is_payback: params[:is_payback].to_i, 
+            amount: params[:amount].to_f / params[:payers].count)
+          if not t.save
+            flash[:danger] = t.errors.messages.keys[0].to_s + " " + 
+            t.errors.messages.values[0][0]
+            break
+          end
+          # update balance
+          b = Balance.transfer(current_user, payer, t.amount)
         end
       end
     end
@@ -63,10 +67,10 @@ class TransactionsController < ApplicationController
         transaction_group.errors.messages.values[0][0]
     else
       # create transaction
-      payer = User.find_by_id(params[:user_id])
+      payee = User.find_by_id(params[:user_id])
       t = Transaction.new(
-        payer:payer, 
-        payee:current_user, 
+        payer:current_user, 
+        payee:payee, 
         household:current_user.household,
         transaction_group: transaction_group,
         is_payback: params[:is_payback].to_i, 
@@ -75,6 +79,8 @@ class TransactionsController < ApplicationController
         flash[:danger] = t.errors.messages.keys[0].to_s + " " + 
         t.errors.messages.values[0][0]
       end
+      # update balance
+      b = Balance.transfer(payee, current_user, params[:amount])
     end
   end
 end
