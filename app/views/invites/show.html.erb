@@ -11,7 +11,7 @@
           <h3>Create a household below:</h3>
           <div class = "household">
             <%= button_to "Create a Household", households_create_path, :class => "btn btn-primary", :method => :get %>
-          </div>   
+          </div>  
         <% else %>
           <h3>Join a household below:</h3>
           <%= form_tag invites_accept_path do %>
