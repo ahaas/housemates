@@ -24,3 +24,6 @@ tmp/*
 
 # c9 file
 .c9
+
+# SimpleCov
+coverage

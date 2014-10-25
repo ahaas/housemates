@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   resources :users
 
+  get 'home'      => 'households#show'
   get  'households/create'   => 'households#new'
   post 'households/create'   => 'households#create'
 
