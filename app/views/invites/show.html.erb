@@ -1,16 +1,20 @@
-<!-- Kevin Sung and Andre Haas -->
-
-TEST SHOW INVITES VIEW
-
+<!-- Kevin Sung and Andre Haas and Opal Kale -->
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_tag invites_accept_path do %>
-      <% @households.each do |household| %>
-        <%= label_tag household.name %>
-        <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
+    <h1 class="text-center">Invitations</h1>
+    <% if @households.empty? %>
+      <h3 class="text-center">Create a household below:</h3> 
+    <% else %>
+      <h3 class="text-center">Join a household below:</h3>
+      <%= form_tag invites_accept_path do %>
+        <% @households.each do |household| %>
+          <%= label_tag household.name %>
+          <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
+        <% end %>
       <% end %>
     <% end %>
+    <div class ="household text-center">
+      <%= button_to "Create a Household", households_create_path, class: "btn btn-primary", method: :get %>
+    </div> 
   </div>
 </div>
-
-<%= link_to "Create a household", households_create_path %>
