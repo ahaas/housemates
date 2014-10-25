@@ -1,17 +1,18 @@
-<!-- Andre Haas -->
+<!-- Andre Haas and Opal Kale -->
 
 <% provide(:title, 'Create household') %>
-<h1>Sign up</h1>
-
+<h1 class="text-center">Sign up</h1>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-4 col-md-offset-4">
     <%= form_for(@household, url: households_create_path) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-
-      <%= f.submit "Create household", class: "btn btn-primary" %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="text-center">
+        <%= f.submit "Create household", class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
 </div>
