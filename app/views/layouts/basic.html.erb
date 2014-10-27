@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:title) %></title>
+  <title>Housemates - <%= yield(:title) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,14 +11,22 @@
 <body>
   <div class="container">
     <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <%= content_tag(:div, message,
+                      class: "alert alert-#{message_type}",
+                      role: "alert") %>
     <% end %>
     <%= yield %>
     <% if logged_in? %>
-      <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+      <div class="row">
+        <hr>
+        <div class="col-md-4 col-md-offset-4 text-center">
+          <%= link_to "Log out", logout_path, method: "delete" %>
+        </div>
+      </div>
     <% end %>
+    </div>
     <br/>
     <%= debug(params) if Rails.env.development? %>
-</div>
+  </div>
 </body>
 </html>

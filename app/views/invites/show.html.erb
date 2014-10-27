@@ -1,16 +1,38 @@
-<!-- Kevin Sung and Andre Haas -->
+<!-- Kevin Sung and Andre Haas and Opal Kale -->
 
-TEST SHOW INVITES VIEW
+<% provide(:title, "Housemates") %>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_tag invites_accept_path do %>
-      <% @households.each do |household| %>
-        <%= label_tag household.name %>
-        <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
-      <% end %>
+  <div class="col-xs-6 col-xs-offset-3">
+    <div class="page-header">
+      <h1 class="text-center">Invitations</h1>
+    </div>
+    <% if @households.empty? %>
+      <div class="well">
+        Create a new household to get started!
+        Is your household already created? Ask a member for an invite.
+      </div>
+      <div class="text-center">
+        <%= button_to "Create a Household", households_new_path,
+          class: "btn btn-primary btn-lg", method: :get %>
+      </div>
+    <% else %>
+      <div class="well">
+        Looks like you've been invited to a household!
+      </div>
+      <div class="text-center">
+        <%= form_tag invites_accept_path do %>
+          <% @households.each do |household| %>
+            <%= content_tag :div, class: 'form-group' do %>
+              <%= label_tag household.name %><br/>
+              <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <p>or</p>
+        <%= button_to "Create a Household", households_new_path,
+          class: "btn btn-default btn-sm", method: :get %>
+      </div>
     <% end %>
   </div>
 </div>
-
-<%= link_to "Create a household", households_create_path %>
