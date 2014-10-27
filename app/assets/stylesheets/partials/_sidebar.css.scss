@@ -63,6 +63,7 @@
       display: block;
       text-decoration: none;
       color: #999999;
+      margin-left: 54px;
       &:hover {
         text-decoration: none;
         color: #fff;
@@ -71,6 +72,10 @@
       &:active, &:focus {
         text-decoration: none;
       }
+    }
+    span {
+      display: inline;
+      color: #999999;
     }
   }
   > .sidebar-brand {
@@ -81,11 +86,17 @@
     color: #555;
     a {
       color: #999999;
+      margin-left: 0px;
+      font-size: 28px;
       &:hover {
         color: #fff;
         background: none;
       }
     }
+  }
+  .gravatar {
+    padding-left: 20px;
+    margin-right: 0px;
   }
 }
 
