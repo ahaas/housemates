@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users
 
   get 'home'      => 'households#show'
-  get  'households/create'   => 'households#new'
+  get  'households/new'   => 'households#new'
   post 'households/create'   => 'households#create'
 
   get 'invites' => 'invites#show'

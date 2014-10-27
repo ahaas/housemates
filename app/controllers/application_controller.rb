@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     def require_login
     # http://guides.rubyonrails.org/action_controller_overview.html
     unless logged_in?
-      flash[:error] = "You must be logged in to access this section"
+      flash[:danger] = "You must be logged in to access this section"
       redirect_to login_path # halts request cycle
     end
   end
