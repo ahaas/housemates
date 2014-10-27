@@ -19,7 +19,10 @@ tmp/*
 # generic files to ignore
 *~
 *.DS_Store
+
+# vim
 *.swp
+*.swn
 *.out
 
 # c9 file
