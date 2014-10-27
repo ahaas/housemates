@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     return household.users - [self]
   end
 
+  def invites
+    return Invite.where(email: email)
+  end
+
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token

@@ -7,7 +7,7 @@
     <div class="page-header">
       <h1 class="text-center">Invitations</h1>
     </div>
-    <% if @households.empty? %>
+    <% if current_user.invites.empty? %>
       <div class="well">
         Create a new household to get started!
         Is your household already created? Ask a member for an invite.
@@ -22,10 +22,12 @@
       </div>
       <div class="text-center">
         <%= form_tag invites_accept_path do %>
-          <% @households.each do |household| %>
+          <% current_user.invites.each do |invite| %>
             <%= content_tag :div, class: 'form-group' do %>
-              <%= label_tag household.name %><br/>
-              <%= submit_tag "Accept invite", name: "household[#{household.id}]", class: "btn btn-primary" %>
+              <%= label_tag invite.household.name %><br/>
+              <%= submit_tag "Accept invite",
+                name: "household[#{invite.household.id}]",
+                class: "btn btn-primary" %>
             <% end %>
           <% end %>
         <% end %>
