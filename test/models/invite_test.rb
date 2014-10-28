@@ -6,6 +6,11 @@ class InviteTest < ActiveSupport::TestCase
   def setup
     @hh = Household.create(name: "Tom House")
     @i = Invite.create(household: @hh, email: "tom@tom.com")
+    assert @i.save, @i.errors.first
+    @u = User.new(name: "Example User",
+                  email: "tom@tom.com",
+                  password: "letmein",
+                  password_confirmation: "letmein")
   end
 
   test "should be valid" do
@@ -48,8 +53,17 @@ class InviteTest < ActiveSupport::TestCase
     @i.save
     assert_equal "tom@tom.com", @i.email
   end
-  
+
   test "has many invites" do
     assert_equal @hh.invites.count, 1
+    @hh2 = Household.create(name: "Andre House")
+    @i2 = Invite.create(household: @hh2, email: "tom@tom.com")
+    assert_equal 2, @u.invites.count
+  end
+
+  test "users cannot be invited twice by the same household" do
+    assert_equal @hh.invites.count, 1
+    @i2 = Invite.new(household: @hh, email: "tom@tom.com")
+    assert_not @i2.valid?
   end
 end

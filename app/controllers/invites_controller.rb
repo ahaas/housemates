@@ -10,7 +10,7 @@ class InvitesController < ApplicationController
     if @invite.save
       render 'households/show', layout: 'household'
     else
-      flash.now[:danger] = 'Invalid email'
+      flash.now[:danger] = 'Email ' + @invite.errors[:email].first
       render 'households/show', layout: 'household'
     end
   end
@@ -32,8 +32,5 @@ class InvitesController < ApplicationController
   end
 
   def show
-    @households = Invite.where(email: current_user.email)
-                        .map(&:household)
-    render 'invites/show'
   end
 end
