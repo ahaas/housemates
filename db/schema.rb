@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024222952) do
+ActiveRecord::Schema.define(version: 20141101042252) do
 
   create_table "balances", force: true do |t|
     t.integer  "user1_id"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20141024222952) do
 
   add_index "balances", ["user1_id"], name: "index_balances_on_user1_id"
   add_index "balances", ["user2_id"], name: "index_balances_on_user2_id"
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.integer  "household_id"
+    t.integer  "user_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["household_id"], name: "index_events_on_household_id"
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "households", force: true do |t|
     t.string   "name"

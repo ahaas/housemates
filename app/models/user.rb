@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   belongs_to :household
   has_many :transactions_as_payer, class_name: 'Transaction', foreign_key: 'payer_id'
   has_many :transactions_as_payee, class_name: 'Transaction', foreign_key: 'payee_id'
+  has_many :events
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 127 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
