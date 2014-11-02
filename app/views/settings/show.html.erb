@@ -1,5 +1,7 @@
 <!-- David Tien -->
 
+<% provide(:title, 'Settings') %>
+
 <h1>Settings</h1>
 
 <div class="row">
@@ -23,6 +25,6 @@
     <%= form_for(:household, url: households_leave_path, 
                  html: {class: 'form-inline'}) do |f| %>
       <%= f.submit "LEAVE", class: "btn btn-danger" %>
-    <% end %>    
+    <% end %>
   </div>
 </div>

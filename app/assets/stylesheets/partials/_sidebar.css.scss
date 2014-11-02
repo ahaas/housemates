@@ -1,3 +1,5 @@
+// Andre Haas, David Tien
+
 /*!
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
@@ -62,7 +64,7 @@
     a {
       display: block;
       text-decoration: none;
-      color: #999999;
+      color: $color_sidebar_text;
       margin-left: 54px;
       &:hover {
         text-decoration: none;
@@ -95,7 +97,7 @@
     }
   }
   .gravatar {
-    padding-left: 20px;
+    margin-left: 20px;
     margin-right: 0px;
   }
 }

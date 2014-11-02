@@ -1,7 +1,10 @@
+// Andre Haas
+
 // Imports for all mixins + global project variables
 
 // Bootstrap
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 
 @import "modules/all";

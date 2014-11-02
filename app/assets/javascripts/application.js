@@ -1,3 +1,5 @@
+// Andre Haas, Kevin Sung
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -15,3 +17,6 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require moment
+//= require bootstrap-datetimepicker
+//= require fullcalendar

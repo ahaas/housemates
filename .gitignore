@@ -23,6 +23,7 @@ tmp/*
 # vim
 *.swp
 *.swn
+*.swo
 *.out
 
 # c9 file
