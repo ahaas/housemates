@@ -2,14 +2,9 @@
 
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
+  layout 'basic'
 
   include UsersHelper
-
-  def show
-    # To delete.
-    @user = User.find(params[:id])
-    raise "This action ('users#show') is going to be deleted"
-  end
 
   def new
     if logged_in?
@@ -17,7 +12,7 @@ class UsersController < ApplicationController
       return
     end
     @user = User.new
-    render 'new', layout: 'basic'
+    render 'new'
   end
 
   def create
@@ -27,7 +22,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to Housemates!"
       redirect_to homepage_for(@user)
     else
-      render 'new', layout: 'basic'
+      render 'new'
     end
   end
 

@@ -1,0 +1,62 @@
+<!-- Andre Haas -->
+
+<% provide(:title, 'Edit Event') %>
+
+<div class="row">
+  <h1 class="text-center">Edit Event</h2>
+</div>
+
+<%= form_tag events_update_path do %>
+  <%= render 'shared/error_messages', object: @event %>
+  <%= hidden_field_tag 'id', @event.id %>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="form-group">
+        <%= label_tag "Name" %>
+        <%= text_field_tag :name, @event.name, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <div class="form-group">
+        <%= label_tag "Start at" %>
+        <%= text_field_tag :start_at, nil, class: 'form-control', id: 'datetimepicker_start' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= label_tag "End at" %>
+        <%= text_field_tag :end_at, nil, class: 'form-control', id: 'datetimepicker_end' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="btn-toolbar pull-right">
+        <%= link_to "Cancel", events_show_path, class: 'btn btn-default' %>
+        <%= submit_tag "Delete event", class: 'btn btn-danger' %>
+        <%= submit_tag "Save", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker_start').datetimepicker();
+    $('#datetimepicker_end').datetimepicker();
+    <% if @event %>
+      console.log('<%= @event.start_at.iso8601 %>-><%= @event.end_at.iso8601 %>')
+      startTime = moment.utc('<%= @event.start_at.iso8601 %>')
+      endTime = moment.utc('<%= @event.end_at.iso8601 %>')
+      $('#datetimepicker_start').data('DateTimePicker')
+                                .setDate(startTime)
+      $('#datetimepicker_end').data('DateTimePicker')
+                              .setDate(endTime)
+    <% end %>
+  });
+</script>
