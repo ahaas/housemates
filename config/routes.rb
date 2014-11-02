@@ -1,6 +1,18 @@
-# Andre Haas
+# Andre Haas, Kevin Sung
 
 Rails.application.routes.draw do
+  get 'events/show' => 'events#show'
+
+  get 'events/new' => 'events#new'
+
+  post 'events/create' => 'events#create'
+
+  delete 'events/delete' => 'events#delete'
+
+  get 'events/edit' => 'events#edit'
+
+  post'events/update' => 'events#update'
+
   # get 'sessions/new'
 
   root   'users#new'
