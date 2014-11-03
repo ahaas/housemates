@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    bootstrap-datetimepicker-rails (0.0.11)
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
     builder (3.2.2)
@@ -48,6 +49,9 @@ GEM
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.2.2)
+    fullcalendar-rails (2.1.1.0)
+      jquery-rails (>= 3.1.1, < 5.0.0)
+      momentjs-rails (~> 2.8, >= 2.8.3)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.3)
@@ -62,6 +66,8 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.4.2)
     minitest (5.4.2)
+    momentjs-rails (2.8.3)
+      railties (>= 3.1)
     multi_json (1.10.1)
     pg (0.17.1)
     rack (1.5.2)
@@ -141,9 +147,11 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  bootstrap-datetimepicker-rails
   bootstrap-sass (= 3.2.0.0)
   byebug
   coffee-rails (~> 4.0.0)
+  fullcalendar-rails
   jbuilder (~> 2.0)
   jquery-rails
   pg (= 0.17.1)

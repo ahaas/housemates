@@ -16,6 +16,10 @@ group :development, :test do
   gem 'simplecov', :require => false
 end
 
+#asset gems
+gem 'fullcalendar-rails'
+gem 'bootstrap-datetimepicker-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use SCSS for stylesheets
