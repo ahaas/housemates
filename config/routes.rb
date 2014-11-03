@@ -1,4 +1,4 @@
-# Andre Haas, Kevin Sung
+# Andre Haas, Kevin Sung, Opal Kale
 
 Rails.application.routes.draw do
   get 'events/show' => 'events#show'
