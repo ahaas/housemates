@@ -8,7 +8,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(name: params[:name], start_at: params[:start_at], end_at: [params:end_at])
+    p params
+    @event = Event.new(name: params[:name], start_at: params[:start_at], end_at: params[:end_at])
     @event.user = current_user
     @event.household = current_user.household
     if @event.save

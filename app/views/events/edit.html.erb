@@ -1,2 +1,31 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<!-- Kevin Sung and Opal Kale -->
+
+<% provide(:title, 'Create/Edit Event') %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h2 class="text-center">Create or Edit an Event</h2>
+      <%= form_tag( '/events/create', :method => :post ) do %>
+      
+      <%= content_tag :div, class: 'form-group' do %>
+        <%= label_tag(:name, "name") %>
+        <%= text_field_tag(:name) %>
+      <% end %>
+      
+      <!-- Start and end date need to be in timepicker format; errors out right now -->
+      
+      <%= content_tag :div, class: 'form-group' do %>
+        <%= label_tag(:start_at, "start date") %>
+        <%= text_field_tag(:start_at) %>
+      <% end %>
+        
+      <%= content_tag :div, class: 'form-group' do %>  
+        <%= label_tag(:end_at, "end date") %>
+        <%= text_field_tag(:end_at) %>
+      <% end %>
+      
+      <%= submit_tag 'Save' %>
+
+    <% end %>
+  </div>
+</div>
