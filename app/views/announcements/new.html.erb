@@ -1,0 +1,9 @@
+<!-- Tom Lai -->
+<% provide(:title, 'New Announcement') %>
+<%= form_tag(transactions_create_path, method: "post") do %>
+  <%= content_tag :div, class: 'form-group' do %>
+    <%= label_tag(:name, "New Announcement") %>
+    <%= text_area_tag :text, nil, class: 'form-control' %>
+  <% end %>
+  <%= submit_tag "Post", class: 'btn btn-primary' %>
+<% end %>
