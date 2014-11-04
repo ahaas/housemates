@@ -28,8 +28,6 @@ Rails.application.routes.draw do
   post 'announcements/create' => 'announcements#create'
   delete 'announcements/destroy' => 'announcements#destroy'
 
-  get 'home'      => 'households#show'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
