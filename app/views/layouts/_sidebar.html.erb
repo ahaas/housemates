@@ -12,6 +12,7 @@
       </div>
     </li>
     <li><%= link_to "Home", homepage_for(current_user) %></li>
+    <li><%= link_to "Announcement", announcements_show_path %></li>
     <li><%= link_to "Finance", transactions_show_path %></li>
     <li><%= link_to "Log out", logout_path, method: "delete" %></li>
   </ul>

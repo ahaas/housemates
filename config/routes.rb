@@ -1,4 +1,4 @@
-# Andre Haas
+# Andre Haas, Tom Lai
 
 Rails.application.routes.draw do
   # get 'sessions/new'
@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   get 'transactions/new_payback' => 'transactions#new_payback'
   get 'transactions/show' => 'transactions#show'
   post 'transactions/create' => 'transactions#create'
+
+  get 'announcements/new' => 'announcements#new'
+  get 'announcements/show' => 'announcements#show'
+  post 'announcements/create' => 'announcements#create'
+  delete 'announcements/destroy' => 'announcements#destroy'
 
   get 'home'      => 'households#show'
 

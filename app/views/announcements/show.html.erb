@@ -1,0 +1,22 @@
+<!-- Tom Lai -->
+<% provide(:title, 'Announcements') %>
+<h1>Announcements</h1>
+<%= form_tag(announcements_create_path, method: "post") do %>
+  <%= content_tag :div, class: 'form-group' do %>
+    <%= label_tag(:title, "New Announcement") %>
+    <%= text_area_tag :text, nil, class: 'form-control' %>
+  <% end %>
+  <%= submit_tag "Post", class: 'btn btn-primary' %>
+<% end %>
+<br>
+<table class="table">
+    <tbody>
+        <% @announcements.each do |a| %>
+        <tr>
+            <td><%= gravatar_for current_user, size: 28 %><span><%= a.user.name %></span><br>
+            	<h2><%= a.text %></h2></td>
+            <td><%= link_to ('x'), { :controller => 'announcements', :action => 'destroy', :id => a.id }, method: :delete, class: "btn" %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
