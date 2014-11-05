@@ -1,17 +1,6 @@
 # Andre Haas, Kevin Sung, Tom Lai, Opal Kale
 
 Rails.application.routes.draw do
-  get 'events/show' => 'events#show'
-
-  get 'events/new' => 'events#new'
-
-  post 'events/create' => 'events#create'
-
-  delete 'events/delete' => 'events#delete'
-
-  get 'events/edit' => 'events#edit'
-
-  post'events/update' => 'events#update'
 
   # get 'sessions/new'
 
@@ -39,6 +28,13 @@ Rails.application.routes.draw do
   get 'announcements/show' => 'announcements#show'
   post 'announcements/create' => 'announcements#create'
   delete 'announcements/destroy' => 'announcements#destroy'
+  
+  get 'events/show' => 'events#show'
+  get 'events/new' => 'events#new'
+  post 'events/create' => 'events#create'
+  delete 'events/delete' => 'events#delete'
+  get 'events/edit' => 'events#edit'
+  post'events/update' => 'events#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

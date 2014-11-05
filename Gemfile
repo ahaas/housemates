@@ -18,7 +18,8 @@ end
 
 #asset gems
 gem 'fullcalendar-rails'
-gem 'bootstrap-datetimepicker-rails'
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
