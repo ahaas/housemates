@@ -1,0 +1,28 @@
+<!-- David Tien -->
+
+<h1>Settings</h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <h3>Update household name</h3>
+    <%= form_for(:household, url: households_update_path, 
+                 html: {class: 'form-inline'}) do |f| %>
+      <%= content_tag :div, class: 'form-group' do %>
+        <%= f.label :name, class: 'sr-only' %>
+        <%= f.text_field :name, class: 'form-control',
+                                 placeholder: 'Enter new household name' %>
+      <% end %>
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h3>Leave household</h3>
+    <%= form_for(:household, url: households_leave_path, 
+                 html: {class: 'form-inline'}) do |f| %>
+      <%= f.submit "LEAVE", class: "btn btn-danger" %>
+    <% end %>    
+  </div>
+</div>

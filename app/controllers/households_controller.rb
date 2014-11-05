@@ -1,4 +1,4 @@
-# Andre Haas, Kevin Sung
+# Andre Haas, Kevin Sung, David Tien
 
 class HouseholdsController < ApplicationController
 
@@ -27,5 +27,15 @@ class HouseholdsController < ApplicationController
     end
   end
   
-  
+  def leave
+    current_user.household = nil
+    current_user.save
+    redirect_to homepage_for(current_user)
+  end
+
+  def update
+    current_user.household.name = params[:household][:name]
+    current_user.household.save
+    render 'settings/show'
+  end
 end
