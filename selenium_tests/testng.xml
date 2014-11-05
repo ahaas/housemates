@@ -1,0 +1,7 @@
+<suite name="Test - Suite" >
+	<test name="Housemates UI Testing">
+		<classes>
+			<class name="housematesAppAutomation.UITestHousemates" />
+		</classes>
+	</test>
+</suite>

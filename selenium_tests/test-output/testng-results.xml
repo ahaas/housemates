@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="5" passed="5">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Test - Suite" duration-ms="26180" started-at="2014-11-05T23:27:56Z" finished-at="2014-11-05T23:28:22Z">
+    <groups>
+    </groups>
+    <test name="Housemates UI Testing" duration-ms="26180" started-at="2014-11-05T23:27:56Z" finished-at="2014-11-05T23:28:22Z">
+      <class name="housematesAppAutomation.UITestHousemates">
+        <test-method status="PASS" signature="TestUserHouseholdInvites()[pri:0, instance:housematesAppAutomation.UITestHousemates@741ad263]" name="TestUserHouseholdInvites" duration-ms="17134" started-at="2014-11-05T15:27:56Z" finished-at="2014-11-05T15:28:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestUserHouseholdInvites -->
+        <test-method status="PASS" signature="TestTransactions()[pri:0, instance:housematesAppAutomation.UITestHousemates@741ad263]" name="TestTransactions" duration-ms="4667" started-at="2014-11-05T15:28:13Z" depends-on-methods="housematesAppAutomation.UITestHousemates.TestUserHouseholdInvites" finished-at="2014-11-05T15:28:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestTransactions -->
+        <test-method status="PASS" signature="TestAnnouncements()[pri:0, instance:housematesAppAutomation.UITestHousemates@741ad263]" name="TestAnnouncements" duration-ms="2116" started-at="2014-11-05T15:28:18Z" depends-on-methods="housematesAppAutomation.UITestHousemates.TestUserHouseholdInvites, housematesAppAutomation.UITestHousemates.TestTransactions" finished-at="2014-11-05T15:28:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestAnnouncements -->
+        <test-method status="PASS" signature="TestSettings()[pri:0, instance:housematesAppAutomation.UITestHousemates@741ad263]" name="TestSettings" duration-ms="2213" started-at="2014-11-05T15:28:20Z" depends-on-methods="housematesAppAutomation.UITestHousemates.TestUserHouseholdInvites, housematesAppAutomation.UITestHousemates.TestAnnouncements, housematesAppAutomation.UITestHousemates.TestTransactions" finished-at="2014-11-05T15:28:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestSettings -->
+        <test-method status="PASS" signature="TestCalendar()[pri:0, instance:housematesAppAutomation.UITestHousemates@741ad263]" name="TestCalendar" duration-ms="0" started-at="2014-11-05T15:28:20Z" depends-on-methods="housematesAppAutomation.UITestHousemates.TestUserHouseholdInvites, housematesAppAutomation.UITestHousemates.TestAnnouncements, housematesAppAutomation.UITestHousemates.TestTransactions" finished-at="2014-11-05T15:28:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestCalendar -->
+      </class> <!-- housematesAppAutomation.UITestHousemates -->
+    </test> <!-- Housemates UI Testing -->
+  </suite> <!-- Test - Suite -->
+</testng-results>

@@ -38,6 +38,8 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    childprocess (0.5.5)
+      ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -50,6 +52,7 @@ GEM
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.2.2)
+    ffi (1.9.6)
     fullcalendar-rails (2.1.1.0)
       jquery-rails (>= 3.1.1, < 5.0.0)
       momentjs-rails (~> 2.8, >= 2.8.3)
@@ -98,6 +101,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
+    rubyzip (1.1.6)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -107,6 +111,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selenium-webdriver (2.43.0)
+      childprocess (~> 0.5)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -142,6 +151,7 @@ GEM
       activemodel (~> 4.0)
       railties (~> 4.0)
       sprockets-rails (~> 2.0)
+    websocket (1.2.1)
 
 PLATFORMS
   ruby
@@ -161,6 +171,7 @@ DEPENDENCIES
   rails_12factor (= 0.0.2)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  selenium-webdriver (~> 2.43.0)
   simplecov
   spring
   sqlite3
