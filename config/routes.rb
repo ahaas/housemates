@@ -1,4 +1,4 @@
-# Andre Haas, Tom Lai
+# Andre Haas, Tom Lai, David Tien
 
 Rails.application.routes.draw do
   # get 'sessions/new'
@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'home'      => 'households#show'
   get  'households/new'   => 'households#new'
   post 'households/create'   => 'households#create'
+  post 'households/leave' => 'households#leave'
+  post 'households/update' => 'households#update'
 
   get 'invites' => 'invites#show'
   post 'invites/accept' => 'invites#accept'
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
   get 'announcements/show' => 'announcements#show'
   post 'announcements/create' => 'announcements#create'
   delete 'announcements/destroy' => 'announcements#destroy'
+
+  get 'settings/show' => 'settings#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
