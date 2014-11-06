@@ -9,6 +9,7 @@ class InvitesController < ApplicationController
 
     if @invite.save
       render 'households/show', layout: 'household'
+      InviteMailer.invite_email(@invite, current_user).deliver
     else
       flash.now[:danger] = 'Email ' + @invite.errors[:email].first
       render 'households/show', layout: 'household'

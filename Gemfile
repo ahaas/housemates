@@ -16,6 +16,7 @@ group :development, :test do
   gem 'web-console'
   gem 'spring'
   gem 'simplecov', :require => false
+  gem "letter_opener"
 end
 
 #asset gems
