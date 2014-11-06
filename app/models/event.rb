@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
   private
 
     def end_at_after_start_at
+      return if not (end_at and start_at)
       if end_at < start_at then
         errors.add(:end_at, "must be after start time")
       end

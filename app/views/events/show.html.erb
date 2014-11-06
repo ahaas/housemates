@@ -1,0 +1,60 @@
+<!-- Andre Haas -->
+
+<% provide(:title, 'Calendar') %>
+
+<h1>Calendar</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="calendar"></div>
+  </div>
+</div>
+
+<div class="row top-buffer">
+  <div class="col-md-12">
+    <%= link_to "Add Event", events_new_url, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var postEvent = function(event) {
+      console.log('eventDrop', event);
+      $.post('<%= events_update_path %>', {
+        id: event.id,
+        start_at: event.start.format(),
+        end_at: event.end.format(),
+        fullcalendar: '1'
+      });
+    };
+
+    $('#calendar').fullCalendar({
+      editable: true,
+      header: {right: 'today month,agendaWeek prev,next'},
+      events: [
+        <% current_user.household.events.each do |event| %>
+          {
+            id: '<%= event.id %>',
+            title: '<%= event.name %>',
+            start: '<%= event.start_at.iso8601 %>',
+            end: '<%= event.end_at.iso8601 %>'
+          },
+        <% end %>
+      ],
+      eventClick: function(event, jsEvent, view) {
+        window.location.replace('<%= events_edit_path %>?id=' + event.id);
+      },
+      dayClick: function(date, jsEvent, view) {
+        if (!date.hasTime()) {
+          date.hour((new Date()).getHours());
+          date.minute(0);
+          date.seconds(0);
+        }
+        var datestr = date.format('YYYY-MM-DD HH:mm')
+        window.location.replace('<%= events_new_path %>?datetime=' + datestr);
+      },
+      eventDrop: postEvent,
+      eventResize: postEvent
+    })
+  });
+</script>

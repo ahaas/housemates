@@ -1,9 +1,9 @@
+# Andre Haas
+
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
   def setup
     @hh = Household.create(name: "Tom House")
     @u = User.create(name: "Example User",
