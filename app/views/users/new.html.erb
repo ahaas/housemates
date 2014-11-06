@@ -15,7 +15,7 @@
 
       <%= content_tag :div, class: 'form-group' do %>
         <%= f.label :email %>
-        <%= f.text_field :email, class: 'form-control' %>
+        <%= f.text_field :email, value: params[:email], class: 'form-control' %>
       <% end %>
 
       <%= content_tag :div, class: 'form-group' do %>
