@@ -26,7 +26,7 @@ class HouseholdsController < ApplicationController
       render 'new', layout: 'basic'
     end
   end
-  
+
   def leave
     current_user.household = nil
     current_user.save
@@ -35,7 +35,9 @@ class HouseholdsController < ApplicationController
 
   def update
     current_user.household.name = params[:household][:name]
-    current_user.household.save
+    if not current_user.household.save
+      flash.now[:danger] = 'Household name is required'
+    end
     render 'settings/show'
   end
 end

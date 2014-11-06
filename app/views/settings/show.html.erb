@@ -1,4 +1,4 @@
-<!-- David Tien -->
+<!-- David Tien, Andre Haas  -->
 
 <% provide(:title, 'Settings') %>
 
@@ -6,13 +6,13 @@
 
 <div class="row">
   <div class="col-md-8">
-    <h3>Update household name</h3>
-    <%= form_for(:household, url: households_update_path, 
-                 html: {class: 'form-inline'}) do |f| %>
+    <h4>Update household name</h4>
+    <%= form_for(:household, url: households_update_path,
+                             html: {class: 'form-inline'}) do |f| %>
       <%= content_tag :div, class: 'form-group' do %>
         <%= f.label :name, class: 'sr-only' %>
         <%= f.text_field :name, class: 'form-control',
-                                 placeholder: 'Enter new household name' %>
+                                placeholder: current_user.household.name %>
       <% end %>
       <%= f.submit "Update", class: "btn btn-primary" %>
     <% end %>
@@ -20,11 +20,10 @@
 </div>
 
 <div class="row">
-  <div class="col-md-8">
-    <h3>Leave household</h3>
-    <%= form_for(:household, url: households_leave_path, 
-                 html: {class: 'form-inline'}) do |f| %>
-      <%= f.submit "LEAVE", class: "btn btn-danger" %>
+  <div class="col-md-8 top-buffer">
+    <h4>Leave household</h4>
+    <%= form_for(:household, url: households_leave_path) do |f| %>
+      <%= f.submit "Leave household", class: "btn btn-danger" %>
     <% end %>
   </div>
 </div>
