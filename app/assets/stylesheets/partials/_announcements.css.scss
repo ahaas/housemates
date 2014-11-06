@@ -1,0 +1,70 @@
+// David Tien
+
+.new-announcement {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+  form {
+    margin: 10px 5px 10px 10px;
+
+    .form-group {
+      width: 100%;
+
+      textarea {
+        width: 92%;
+        margin-right: 5px;
+        resize: vertical;
+      }
+    }
+  }
+}
+
+.announcement {
+  border: #fafafa;
+  border-style: solid;
+  border-width: 2px;
+  padding: 10px 0px;
+  margin-bottom: 8px;
+
+  .name {
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .timeago {
+    font-size: 10px;
+    color: gray;
+  }
+
+  .delete-container {
+    float: right;
+
+    &:hover {
+      .delete-announcement {
+        color: #d9534f;
+      }
+
+      .delete-text {
+        display: inline;
+        text-decoration: none;
+      }
+    }
+
+    .delete-announcement {
+      color: gray;
+      padding: 0;
+    }
+
+    .delete-text {
+      font-size: 10px;
+      color: #d9534f;
+      display: none;
+    }
+  }
+
+  .announcement-text {
+    margin-top: 8px;
+    font-size: 20px;
+  }
+}
