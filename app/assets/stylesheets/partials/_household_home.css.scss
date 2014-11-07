@@ -1,0 +1,38 @@
+// David Tien
+
+li {
+  list-style-type: none;
+}
+
+.member {
+  margin: 15px 0px 45px -40px;
+}
+
+.name {
+  font-size: 17px;
+}
+
+.invite-form {
+  float: right;
+  text-align: center;
+  margin-top: 15px;
+  width: 67%;
+
+  .form-group {
+    width: 75%;
+
+    #invite_email {
+      width: 100%
+    }
+  }
+}
+
+.invite {
+  font-size: 17px;
+  margin-top: 15px;
+
+  small {
+    font-size: 10px;
+    color: gray;
+  }
+}
