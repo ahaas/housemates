@@ -1,22 +1,31 @@
-<!-- Tom Lai -->
+<!-- Tom Lai, David Tien -->
 <% provide(:title, 'Announcements') %>
 <h1>Announcements</h1>
-<%= form_tag(announcements_create_path, method: "post") do %>
-  <%= content_tag :div, class: 'form-group' do %>
-    <%= label_tag(:title, "New Announcement") %>
-    <%= text_area_tag :text, nil, class: 'form-control' %>
+<div class="row new-announcement">
+  <%= form_tag(announcements_create_path, method: "post", :class => "form-inline") do %>
+    <%= content_tag :div, class: 'form-group' do %>
+      <%= text_area_tag :text, nil, class: 'form-control', placeholder: 'Write a new announcement...' %>
+      <%= submit_tag "Post", class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
-  <%= submit_tag "Post", class: 'btn btn-primary' %>
+</div>
+<% @announcements.reverse_each do |a| %>
+  <div class="row announcement">
+    <div class="col-md-12">
+      <div class="media">
+        <span class="media-left">
+          <%= gravatar_for current_user, size: 45 %>
+        </span>
+        <span class="media-body">
+          <div class="delete-container">
+            <%= link_to 'Delete announcement', announcements_destroy_path(id: a.id), method: :delete, class: "delete-text" %>
+            <%= link_to 'x', announcements_destroy_path(id: a.id), method: :delete, class: "btn delete-announcement" %>
+          </div>
+          <div class="name"><%= a.user.name %></div>
+          <div class="timeago"><%= time_ago_in_words(a.created_at) %> ago</div>
+        </span>
+      </div>
+    </div>
+    <div class="col-md-12 announcement-text"><%= a.text %></div>
+  </div>
 <% end %>
-<br>
-<table class="table">
-    <tbody>
-        <% @announcements.each do |a| %>
-        <tr>
-            <td><%= gravatar_for current_user, size: 28 %><span><%= a.user.name %></span><br>
-            	<h2><%= a.text %></h2></td>
-            <td><%= link_to ('x'), { :controller => 'announcements', :action => 'destroy', :id => a.id }, method: :delete, class: "btn" %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
