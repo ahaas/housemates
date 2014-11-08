@@ -36,31 +36,29 @@ class UsersAnnouncementsTest < ActionDispatch::IntegrationTest
 
   test "no announcements" do
     get announcements_show_path
-    assert_select "tr", count: 0
+    assert_select "div.announcement-text", count: 0
   end
 
   test "new announcement" do
     post_via_redirect announcements_create_path, commit: 'Post', text: 'Test announcement!'
     assert_template 'announcements/show'
-    assert_select "tr", count: 1
-    assert_select "h2", text: 'Test announcement!'
+    assert_select "div.announcement-text", text: 'Test announcement!'
   end
 
   test "empty announcement" do
     post_via_redirect announcements_create_path, commit: 'Post'
     assert_template 'announcements/show'
-    assert_select "tr", count: 0
+    assert_select "div.announcement-text", count: 0
   end
 
   test "delete announcement" do
     # Creating a new announcement to delete
     post_via_redirect announcements_create_path, commit: 'Post', text: 'Test announcement!', id: '1'
-    assert_select "h2", text: 'Test announcement!'
+    assert_select "div.announcement-text", text: 'Test announcement!'
     # Deleting that announcement
     @announcement_id = Announcement.last.id
     delete_via_redirect announcements_destroy_path, id: @announcement_id
     assert_template 'announcements/show'
-    assert_select "tr", count: 1
   end
 
 end

@@ -23,21 +23,18 @@ class UsersCreateEventTest < ActionDispatch::IntegrationTest
 
   test "create event with empty name" do
     log_in_as @user1, password: "daringdarius"
-    assert_select "span[class=fc-title]", count: 0
     post_via_redirect events_create_path, name: "", start_at: "11/7/2014 3:00 PM", end_at: "11/7/2014 4:00 PM"
     assert_template "events/new"
   end
 
   test "create event with empty start" do
     log_in_as @user1, password: "daringdarius"
-    assert_select "span[class=fc-title]", count: 0
     post_via_redirect events_create_path, name: "no start", start_at: "", end_at: "11/7/2014 4:00 PM"
     assert_template "events/new"
   end
 
   test "create event with empty end" do
     log_in_as @user1, password: "daringdarius"
-    assert_select "span[class=fc-title]", count: 0
     post_via_redirect events_create_path, name: "no start", start_at: "11/7/2014 3:00 PM", end_at: ""
     assert_template "events/new"
   end
