@@ -1,4 +1,4 @@
-# Kevin Sung, David Tien
+# Kevin Sung, David Tien, Andre Haas
 
 require 'test_helper'
 
@@ -15,6 +15,11 @@ class UsersInviteTest < ActionDispatch::IntegrationTest
    
   test "single invite" do
     log_in_as @user1, password: 'letmein'
+
+    message = stub(deliver: lambda {})
+    message.expects(:deliver)
+    InviteMailer.stubs(invite_email: message)
+
     post invites_create_path, invite: {email: 'jane@gmail.com', household: @user1.household}
     assert_template 'households/show'
     assert_select '[class=invite]' do |elements|
