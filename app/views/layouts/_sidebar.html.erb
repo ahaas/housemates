@@ -11,11 +11,41 @@
         <span><%= current_user.name %></span>
       </div>
     </li>
-    <li><%= link_to "Home", homepage_for(current_user) %></li>
-    <li><%= link_to "Calendar", events_show_path %></li>
-    <li><%= link_to "Announcements", announcements_show_path %></li>
-    <li><%= link_to "Finance", transactions_show_path %></li>
-    <li><%= link_to "Settings", settings_show_path %></li>
-    <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+    <li>
+      <div class="nav-link">
+        <span class="glyphicon glyphicon-home"></span>
+        <%= link_to "Home", homepage_for(current_user) %>
+      </div>
+    </li>
+    <li>
+      <div class="nav-link">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <%= link_to "Calendar", events_show_path %>
+      </div>
+    </li>
+    <li>
+      <div class="nav-link">
+        <span class="glyphicon glyphicon-bullhorn"></span>
+        <%= link_to "Announcements", announcements_show_path %>
+      </div>
+    </li>
+    <li>
+      <div class="nav-link">
+        <span class="glyphicon glyphicon-usd"></span>
+        <%= link_to "Finance", transactions_show_path %>
+      </div>
+    </li>
+    <li>
+      <div class="nav-link">
+        <span class="glyphicon glyphicon-cog"></span>
+        <%= link_to "Settings", settings_show_path %>
+      </div>
+    </li>
+    <li>
+      <div class="nav-link">
+        <span class="glyphicon glyphicon-log-out"></span>
+        <%= link_to "Log out", logout_path, method: "delete" %>
+      </div>
+    </li>
   </ul>
 </div>

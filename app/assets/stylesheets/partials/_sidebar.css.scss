@@ -62,22 +62,30 @@
     text-indent: 20px;
     line-height: 40px;
     a {
-      display: block;
       text-decoration: none;
       color: $color_sidebar_text;
-      margin-left: 54px;
+      margin-left: 39px;
       &:hover {
         text-decoration: none;
-        color: #fff;
-        background: rgba(255,255,255,0.2);
       }
       &:active, &:focus {
         text-decoration: none;
       }
     }
+    .nav-link {
+      &:hover {
+        text-decoration: none;
+        color: #fff;
+        background: rgba(255,255,255,0.2);
+      }
+    }
     span {
       display: inline;
       color: #999999;
+
+      &.glyphicon {
+        left: 10px;
+      }
     }
   }
   > .sidebar-brand {
