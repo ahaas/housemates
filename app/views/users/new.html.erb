@@ -2,35 +2,58 @@
 
 <% provide(:title, 'Sign up') %>
 
+
+
 <div class="row">
-  <div class="col-md-4 col-md-offset-4">
+  <div class="col-sm-4">
+    <h1>Housemates</h1>
+  </div>
+  <div class="col-sm-8 text-right top-buffer">
+    <%= form_for :session, url: login_path, html: {class: "form-inline"} do |f| %>
+      <div class="form-group">
+        <%= f.text_field :email, class: 'form-control input-sm', placeholder: 'Email' %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, class: 'form-control input-sm', placeholder: 'Password' %>
+      </div>
+      <button type="submit" class="btn btn-sm btn-default">Log in</button>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <hr>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <h3>Connect to your roommates</h3>
+    <ul>
+      <li><h4>Keep track of finances</h4></li>
+      <li><h4>Make announcements</h4></hr></li>
+      <li><h4>Share events</h4></li>
+    </ul>
+  </div>
+  <div class="col-sm-4">
     <h2 class="text-center">Sign up</h2>
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= content_tag :div, class: 'form-group' do %>
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
       <% end %>
 
       <%= content_tag :div, class: 'form-group' do %>
-        <%= f.label :email %>
-        <%= f.text_field :email, value: params[:email], class: 'form-control' %>
+        <%= f.text_field :email, value: params[:email], class: 'form-control', placeholder: 'Email' %>
       <% end %>
 
       <%= content_tag :div, class: 'form-group' do %>
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
       <% end %>
 
       <%= content_tag :div, class: 'form-group' do %>
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm password' %>
       <% end %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
-    <hr>
-    <p >Already a user? <%= link_to "Log in!", login_path %></p>
   </div>
 </div>
