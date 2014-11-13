@@ -5,7 +5,7 @@
 <h1 id="title"><%= current_user.household.name %> <small>Household</small></h1>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 household-members">
     <h3>Members</h3>
     <% current_user.household.users.each do |member| %>
     <div class="media">

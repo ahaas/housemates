@@ -7,6 +7,10 @@ class SessionsController < ApplicationController
   include UsersHelper
 
   def new
+    if logged_in?
+      redirect_to homepage_for(current_user)
+      return
+    end
   end
 
   def create
