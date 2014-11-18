@@ -37,6 +37,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'users/new'
     assert_select "a[href=?]", signup_path, count: 0
     assert_select "a[href=?]", logout_path, count: 0
-    assert_select "a[href=?]", login_path
   end
 end
