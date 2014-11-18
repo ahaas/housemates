@@ -21,7 +21,7 @@ class AnnouncementsController < ApplicationController
 
   def destroy
     announcement = Announcement.find_by(id: params[:id])
-    if announcement
+    if announcement and announcement.user == current_user
       announcement.destroy
     end
     redirect_to announcements_show_path
