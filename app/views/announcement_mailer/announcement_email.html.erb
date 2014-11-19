@@ -1,0 +1,15 @@
+<!-- Tom Lai -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <%= gravatar_for @announcement.user, size: 120 %><h1><%=@announcement.user.name+' has made an announcement!'%></h1>
+    <h2>
+      <%= @announcement.text %>
+    </h2>
+    <br>
+    <p>Thanks for joining <%= link_to 'Housemates', login_url, method: :get %> and have a great day!</p>
+  </body>
+</html>
