@@ -11,10 +11,13 @@ class AnnouncementsController < ApplicationController
 
   def create
     if params[:commit] == 'Post'
-      announcement = Announcement.create(
+      announcement = Announcement.new(
         user: current_user, 
         household: current_user.household,
         text: params[:text])
+      if announcement.save
+        AnnouncementMailer.send_announcement_email(announcement)
+      end
     end
     redirect_to announcements_show_path
   end
