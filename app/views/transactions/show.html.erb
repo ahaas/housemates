@@ -13,7 +13,13 @@
     </thead>
     <tbody>
         <% @current_user.housemates.each do |hm| %>
-        <tr>
+        <% if Balance.get(current_user, hm) > 0 %>
+            <tr class="success">
+        <% elsif Balance.get(current_user, hm) < 0 %>
+            <tr class="danger">
+        <% else %>
+            <tr>
+        <% end %>
             <td><%= hm.name %></td>
             <td><%= Balance.get(current_user, hm) %></td>
         </tr>
@@ -31,18 +37,24 @@
             <th>Payee</th>
             <th>Name of item</th>
             <th>Amount</th>
-            <th>is_payback</th>
         </tr>
     </thead>
     <tbody>
         <% @transactions.each do |t| %>
-        <tr>
+        <% if t.payer == current_user %>
+            <tr class="danger">
+        <% else %>
+            <tr class="success">
+        <% end %>
             <td><%= t.created_at %></td>
             <td><%= t.payer.name %></td>
             <td><%= t.payee.name %></td>
             <td><%= t.transaction_group.name %></td>
-            <td><%= t.amount %> </td>
-            <td><%= t.is_payback.to_s %></td>
+            <% if t.payer == current_user %>
+                <td><%= -t.amount %> </td>
+            <% else %>
+                <td><%= t.amount %> </td>
+            <% end %>
         </tr>
         <% end %>
     </tbody>
