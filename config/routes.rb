@@ -2,6 +2,12 @@
 
 Rails.application.routes.draw do
 
+  get 'tasks/show' => 'tasks#show'
+  post 'tasks/create' => 'tasks#create'
+  delete 'tasks/delete' => 'tasks#delete'
+  get 'tasks/assign' => 'tasks#assign'
+  post 'tasks/complete' => 'tasks#complete'
+
   root   'users#new'
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'

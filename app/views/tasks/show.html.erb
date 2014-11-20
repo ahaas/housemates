@@ -1,0 +1,66 @@
+<!-- Kevin Sung -->
+
+<h1>Tasks</h1>
+
+<%= form_tag tasks_create_path do %>
+  <%= render 'shared/error_messages', object: @event %>
+  <div class="row">
+    <div class="col-lg-1 col-centered" >
+      <div class="form-inline">
+        <%= label_tag "Name" %>
+        <%= text_field_tag :name, nil, class: 'form-control' %>
+        <%= submit_tag "Save", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<table class="table">
+  <% @tasks.reverse_each do |t| %>
+    <tr>
+      <td>
+        <% if t.completed %>
+          <input type="checkbox" class="checkbox" data-id="<%= t.id %>" checked>
+        <% else %>
+          <input type="checkbox" class="checkbox" data-id="<%= t.id %>">
+        <% end %>
+      </td>
+      <td>
+        <a href="<%= tasks_assign_path(:task_id => t.id) %>">
+        <% if t.user %>
+          <%=  gravatar_for t.user, size: 24 %>
+          <div class = "user" value = "user" title = "Assigned to"><%= t.user.name %></div>
+        <% else %>
+          <div class = "blank-profile" title = "Assign task to yourself"> </div>
+        <% end %>
+        </a>
+      </td>
+      <td>
+        <div class="name" value = "name"><%= t.name %></div>
+      </td>
+      <td>
+        <%= link_to 'x', tasks_delete_path(id: t.id), method: :delete, class: "btn delete-announcement btn btn-xs btn-danger" %>
+      </td>
+    </tr>
+  <% end %>
+  
+</table>
+
+<script>
+
+$(document).ready(function() {
+  $(".checkbox").change(function(e){
+    if(this.checked) {
+      $.post('<%= tasks_complete_path %>', {
+        checked: true,
+        checkbox_id: $(this).attr('data-id')
+      });
+    } else {
+      $.post('<%= tasks_complete_path %>', {
+        checked: false,
+        checkbox_id: $(this).attr('data-id')
+      });
+    }
+  });
+});
+</script>
