@@ -1,4 +1,4 @@
-<!-- Kevin Sung, Andre Haas, David Tien -->
+<!-- Kevin Sung, Andre Haas, David Tien, Opal Kale -->
 
 <% provide(:title, 'Home') %>
 
@@ -19,7 +19,8 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <div class="lineup-h3 invite-form">
+    <div class="lineup-h3 form-inline">
+      <h3>Invites</h3>
       <%= form_for(:invite, url: invites_create_path, 
                  html: {class: 'form-inline'}) do |f| %>
         <%= content_tag :div, class: 'form-group' do %>
@@ -30,7 +31,6 @@
         <%= f.submit "Invite", class: "btn btn-primary" %>
       <% end %>
     </div>
-    <h3>Invites</h3>
     <% current_user.household.invites.each do |invite| %>
       <div class="invite"><%= invite.email %> <small>Pending</small></div>
     <% end %>
