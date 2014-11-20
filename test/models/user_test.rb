@@ -1,3 +1,5 @@
+# Tom Lai
+
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
@@ -109,5 +111,35 @@ class UserTest < ActiveSupport::TestCase
     assert @u2.housemates.include? @u0
     assert @u2.housemates.include? @u1
     assert_not @u2.housemates.include? @u2
+  end
+
+  test "password reset with valid and correct entries" do
+    user = User.create(name: 'User', email:'user@housemates.com',
+      password: '000000', password_confirmation: '000000')
+    user.create_reset_digest
+    user.reload
+    new_password = 'password'
+    result = user.reset_password(user.reset_digest, new_password, new_password)
+    assert_equal 0, result
+  end
+
+  test "password reset with bad password entries" do
+    user = User.create(name: 'User', email:'user@housemates.com',
+      password: '000000', password_confirmation: '000000')
+    user.create_reset_digest
+    user.reload
+    new_password = 'pass'
+    result = user.reset_password(user.reset_digest, new_password, new_password)
+    assert_equal -1, result
+  end
+
+  test "password reset with bad token" do
+    user = User.create(name: 'User', email:'user@housemates.com',
+      password: '000000', password_confirmation: '000000')
+    user.create_reset_digest
+    user.reload
+    new_password = 'password'
+    result = user.reset_password('very bad token', new_password, new_password)
+    assert_equal -1, result
   end
 end

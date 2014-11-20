@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   post   'login'  => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   resources :users
+  get 'forget_password' => 'users#forget_password'
+  post 'reset_create' => 'users#reset_create'
+  get 'reset' => 'users#reset'
+  post 'reset' => 'users#reset_password'
 
   get 'home'      => 'households#show'
   get  'households/new'   => 'households#new'

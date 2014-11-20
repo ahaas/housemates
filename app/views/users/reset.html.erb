@@ -1,0 +1,22 @@
+<!-- Tom Lai -->
+
+<% provide(:title, "Reset password") %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h2 class="text-center">Login</h2>
+      <%= form_tag(reset_path, method: "post") do %>
+        <%= content_tag :div, class: 'form-group' do %>
+          <%= label_tag(:password, "Password") %>
+          <%= password_field_tag :password, nil, class: 'form-control' %>
+          <%= label_tag(:confirmed_password, "Confirmed password") %>
+          <%= password_field_tag :confirmed_password, nil, class: 'form-control' %>
+          <%= hidden_field_tag('email', @email) %>
+          <%= hidden_field_tag('token', @token) %>
+        <% end %>
+        <%= submit_tag "Reset", class: 'btn btn-primary' %>
+      <% end %>
+    <hr>
+    <p>New user? <%= link_to "Sign in now!", signup_path %></p>
+  </div>
+</div>
