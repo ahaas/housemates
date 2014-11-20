@@ -1,7 +1,7 @@
-# Andre Haas
+# Andre Haas, Tom Lai
 
 class User < ActiveRecord::Base
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :reset_token
   belongs_to :household
   has_many :transactions_as_payer, class_name: 'Transaction', foreign_key: 'payer_id'
   has_many :transactions_as_payee, class_name: 'Transaction', foreign_key: 'payee_id'
@@ -51,5 +51,35 @@ class User < ActiveRecord::Base
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest,  User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  # Sends password reset email.
+  def send_password_reset_email
+    PasswordResetMailer.password_reset_email(self).deliver
+  end
+
+  def reset_password(token, password, password_confirmation)
+    if self.reset_digest == token and self.password_reset_not_expired?
+      self.password = password
+      self.password_confirmation = password_confirmation
+      if self.save
+        self.reset_digest = nil
+        self.reset_sent_at = nil
+        self.save
+        return 0
+      end
+    end
+    return -1
+  end
+
+  # Returns true if a password reset has expired.
+  def password_reset_not_expired?
+    self.reset_sent_at > 2.hours.ago
   end
 end

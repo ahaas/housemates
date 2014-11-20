@@ -2,8 +2,6 @@
 
 <% provide(:title, 'Sign up') %>
 
-
-
 <div class="row">
   <div class="col-sm-4">
     <h1>Housemates</h1>
@@ -17,6 +15,8 @@
         <%= f.password_field :password, class: 'form-control input-sm', placeholder: 'Password' %>
       </div>
       <button type="submit" class="btn btn-sm btn-default">Log in</button>
+      <br>
+      <p><%= link_to "forget your password?", forget_password_path %></p>
     <% end %>
   </div>
 </div>
