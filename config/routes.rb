@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'transactions/new_item' => 'transactions#new_item'
   get 'transactions/new_payback' => 'transactions#new_payback'
   get 'transactions/show' => 'transactions#show'
+  get 'transactions/individual_history' => 'transactions#individual_history'
   post 'transactions/create' => 'transactions#create'
 
   get 'announcements/new' => 'announcements#new'

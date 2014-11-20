@@ -83,4 +83,16 @@ class TransactionsController < ApplicationController
       b = Balance.transfer(payee, current_user, params[:amount])
     end
   end
+
+  def individual_history
+    if not params.has_key? :user_id
+      redirect_to transactions_show_path
+    end
+    @user = User.find_by(id: params[:user_id])
+    if @user == nil or current_user == @user or 
+      @user.household != current_user.household
+       redirect_to transactions_show_path 
+    end
+    @transactions = current_user.transactions_with_user(@user)
+  end
 end
