@@ -1,4 +1,4 @@
-# Andre Haas, Kevin Sung, David Tien
+# Andre Haas, Kevin Sung, David Tien, Opal Kale
 
 class HouseholdsController < ApplicationController
 
@@ -38,6 +38,7 @@ class HouseholdsController < ApplicationController
     if not current_user.household.save
       flash.now[:danger] = 'Household name is required'
     end
+    flash[:success] = "Household name successfully updated"
     render 'settings/show'
   end
 end
