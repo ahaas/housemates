@@ -63,6 +63,18 @@ ActiveRecord::Schema.define(version: 20141119230222) do
 
   add_index "invites", ["household_id"], name: "index_invites_on_household_id"
 
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.boolean  "completed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "household_id"
+  end
+
+  add_index "tasks", ["household_id"], name: "index_tasks_on_household_id"
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
+
   create_table "transaction_groups", force: true do |t|
     t.string   "name"
     t.decimal  "total_amount"
