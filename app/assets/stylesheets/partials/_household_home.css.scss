@@ -4,6 +4,20 @@
   font-size: 17px;
 }
 
+.small-gravatar {
+  .gravatar {
+    margin: 2px 3px 2px 0px;
+    border-radius: 2px;
+  }
+}
+
+.invite-form {
+  .input-sm {
+    height: 24px;
+    margin: 3px 0px 3px 4px;
+  }
+}
+
 .invite {
   font-size: 17px;
   margin-top: 15px;
@@ -11,5 +25,22 @@
   small {
     font-size: 10px;
     color: gray;
+  }
+}
+
+.event {
+  border: solid #fafafa 2px;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px 0px;
+
+  .name {
+    font-size: 18px;
+  }
+
+  .timeuntil {
+    font-size: 12px;
+    float: right;
+    margin-top: 5px;
   }
 }

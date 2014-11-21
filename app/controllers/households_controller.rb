@@ -3,6 +3,14 @@
 class HouseholdsController < ApplicationController
 
   def show
+    @announcements = current_user.household.announcements
+                        .order(:created_at).reverse
+    @events = current_user.household.events.where('start_at >= ?', DateTime.now)
+                        .order(:start_at)
+    @transactions = current_user.transactions_as_payer.order(:created_at).reverse +
+                        current_user.transactions_as_payee.order(:created_at).reverse
+    @tasks = current_user.household.tasks
+                        .order(:created_at).reverse
   end
 
   def new

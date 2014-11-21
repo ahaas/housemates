@@ -22,7 +22,7 @@ class TasksController < ApplicationController
   def delete
     if Task.find(params[:id]).destroy
       flash[:success] = 'Task successfully deleted'
-      redirect_to tasks_show_path
+      redirect_to :back
     else
       flash[:notice] = 'Error: task was NOT deleted'
       render tasks_show_path
