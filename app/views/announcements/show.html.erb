@@ -28,6 +28,36 @@
         </span>
       </div>
     </div>
-    <div class="col-md-12 announcement-text"><%= a.text %></div>
+    <div class="col-md-12 announcement-text" <% if a.user == current_user %>can-edit="true"<% end %>
+     data-id="<%= a.id %>"><%= a.text %></div>
   </div>
 <% end %>
+
+<script>
+function divClicked() {
+  if (!$(this).attr('can-edit')) {
+    return
+  }
+  var divHtml = $(this).html();
+  var editableText = $('<textarea data-id="' + $(this).attr('data-id') + '"/>');
+  editableText.val(divHtml);
+  $(this).replaceWith(editableText);
+  editableText.focus();
+  // setup the blur event for this new textarea
+  editableText.blur(editableTextBlurred);
+}
+function editableTextBlurred() {
+  // do post
+  var anc_id = $(this).attr('data-id')
+  console.log('anc_id', anc_id)
+  $.post("<%= announcements_update_url %>", {
+    announcement_id: anc_id,
+    announcement_text: $(this).val()
+  }, location.reload());
+}
+
+$(document).ready(function() {
+  $(".announcement-text").click(divClicked);
+});
+
+</script>

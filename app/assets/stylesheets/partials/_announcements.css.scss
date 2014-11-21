@@ -67,4 +67,9 @@
     margin-top: 8px;
     font-size: 20px;
   }
+
+  textarea {
+    width: calc(100% - 30px);
+    margin: 20px 15px;
+  }
 }
