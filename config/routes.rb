@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'announcements/new' => 'announcements#new'
   get 'announcements/show' => 'announcements#show'
   post 'announcements/create' => 'announcements#create'
+  post 'announcements/update' => 'announcements#update'
   delete 'announcements/destroy' => 'announcements#destroy'
 
   get 'events/show' => 'events#show'
