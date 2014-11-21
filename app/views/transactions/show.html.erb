@@ -9,6 +9,7 @@
         <tr>
             <th>Housemate</th>
             <th>Amount</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
         <% end %>
             <td><%= hm.name %></td>
             <td><%= Balance.get(current_user, hm) %></td>
+            <td><%= link_to "individual history", transactions_individual_history_path(user_id: hm.id), class: 'btn btn-default' %></td>
         </tr>
         <% end %>
     </tbody>

@@ -142,4 +142,33 @@ class UserTest < ActiveSupport::TestCase
     result = user.reset_password('very bad token', new_password, new_password)
     assert_equal -1, result
   end
+
+  test 'transactions_with_user method with valid inputs' do
+    @hh = Household.create(name:"hh")
+    @user.household = @hh
+    @user.save
+    @user1 = @user
+    @user2 = User.create(name: "Example User", email: "user2@example.com",
+                     password: "letmein", 
+                     password_confirmation: "letmein",
+                     household: @hh)
+    @tg = TransactionGroup.create(name: "test transaction", 
+      total_amount: 10.0)
+    @t1 = Transaction.create(payer:@user1, payee:@user2, household: @hh, 
+      transaction_group: @tg, is_payback: false, amount: 5.00)
+    @t2 = Transaction.create(payer:@user2, payee:@user1, household: @hh, 
+      transaction_group: @tg, is_payback: false, amount: 5.00)
+    assert_equal 2, @user1.transactions_with_user(@user2).length,
+      'user 1 transactions with user 2 does not contain all transactions'
+    assert_equal 2, @user2.transactions_with_user(@user1).length
+      'user 2 transactions with user 1 does not contain all transactions'
+    assert @user1.transactions_with_user(@user2).include?(@t1), 
+      'user 1 transactions with user 2 contains transaction 1'
+    assert @user1.transactions_with_user(@user2).include?(@t2), 
+      'user 1 transactions with user 2 contains transaction 2'
+    assert @user2.transactions_with_user(@user1).include?(@t1), 
+      'user 2 transactions with user 1 contains transaction 1'
+    assert @user2.transactions_with_user(@user1).include?(@t2), 
+      'user 2 transactions with user 1 contains transaction 2'
+  end
 end

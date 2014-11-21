@@ -82,4 +82,14 @@ class User < ActiveRecord::Base
   def password_reset_not_expired?
     self.reset_sent_at > 2.hours.ago
   end
+
+  def transactions_with_user(user)
+    @transactions = []
+    @transactions += transactions_as_payee.select{|t| t.payer == user}
+    @transactions += transactions_as_payer.select{|t| t.payee == user}
+    @transactions.uniq!
+    @transactions.sort_by!(&:created_at).reverse!
+    return @transactions
+  end
+
 end
