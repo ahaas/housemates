@@ -53,5 +53,4 @@ class UsersNewPaybackTest < ActionDispatch::IntegrationTest
     assert_template 'transactions/show'
     assert_not flash.empty? 
   end
-
 end
