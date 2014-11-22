@@ -39,6 +39,14 @@ class UsersAnnouncementsTest < ActionDispatch::IntegrationTest
     assert_select "div.announcement-text", count: 0
   end
 
+  test "successfully update announcement" do
+    # Creating a new announcement to update
+    post_via_redirect announcements_create_path, commit: 'Post', text: 'Test announcement!'
+    post_via_redirect announcements_update_path, announcement_id: Announcement.last.id, announcement_text: 'Updated announcement'
+    assert_not flash.empty?
+    assert_template 'announcements/show'
+  end
+
   test "new announcement" do
     post_via_redirect announcements_create_path, commit: 'Post', text: 'Test announcement!'
     assert_template 'announcements/show'
