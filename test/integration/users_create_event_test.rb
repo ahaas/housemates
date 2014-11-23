@@ -1,4 +1,4 @@
-# David Tien
+# David Tien and Opal Kale
 
 require 'test_helper'
 

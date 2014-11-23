@@ -7,7 +7,7 @@ class HouseholdsController < ApplicationController
 
   def new
     if current_user.household
-      flash[:error] = "You are already part of a household!"
+      flash[:danger] = "You are already part of a household!"
       redirect_to homepage_for(current_user)
       return
     end
