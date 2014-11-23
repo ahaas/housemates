@@ -23,8 +23,8 @@ class AnnouncementsController < ApplicationController
   end
 
   def update
-    p '*'*80
-    p params
+    #p '*'*80
+    #p params
     announcement = Announcement.find_by(id: params[:announcement_id])
     return if !announcement or announcement.user != current_user
     announcement.text = params[:announcement_text]

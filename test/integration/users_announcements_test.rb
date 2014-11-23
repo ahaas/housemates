@@ -34,7 +34,7 @@ class UsersAnnouncementsTest < ActionDispatch::IntegrationTest
     assert_template 'announcements/show'
   end
 
-  test "no announcements" do
+  test "no announcement" do
     get announcements_show_path
     assert_select "div.announcement-text", count: 0
   end
