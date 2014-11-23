@@ -5,8 +5,8 @@
 <%= form_tag tasks_create_path do %>
   <%= render 'shared/error_messages', object: @event %>
   <div class="row">
-    <div class="col-lg-1 col-centered" >
-      <div class="form-inline">
+    <div class="col-md-12 col-centered" >
+      <div class="form-group form-inline">
         <%= label_tag "Name" %>
         <%= text_field_tag :name, nil, class: 'form-control' %>
         <%= submit_tag "Save", class: 'btn btn-primary' %>
