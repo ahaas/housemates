@@ -30,6 +30,23 @@ class UsersNewItemTest < ActionDispatch::IntegrationTest
     log_in_as @user1, password: "letmein"
   end
 
+  test "individual history of a another user" do
+    get transactions_individual_history_path(params: {user_id: @user2_id})
+    assert_template 'transactions/individual_history'
+  end
+
+  test "can't check logged in user's individual history" do
+    get transactions_individual_history_path(params: {user_id: @user1_id})
+    follow_redirect!
+    assert_template 'transactions/show'
+  end
+
+  test "individual history unavailable for unspecified user" do
+    get transactions_individual_history_path
+    follow_redirect!
+    assert_template 'transactions/show'
+  end
+  
   test "add new item button" do
     get transactions_new_item_path
     assert_template 'transactions/new_item'
