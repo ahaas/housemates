@@ -5,34 +5,123 @@
 <h1 id="title"><%= current_user.household.name %> <small>Household</small></h1>
 
 <div class="row">
-  <div class="col-md-6 household-members">
-    <h3>Members</h3>
+  <div class="col-md-12">
     <% current_user.household.users.each do |member| %>
-    <div class="media">
-      <span class="media-left"> 
-        <%= gravatar_for member, size: 60 %>
+      <span class="small-gravatar">
+        <%= gravatar_for member, size: 26, title: member.name %>
       </span>
-      <div class="media-body">
-        <div class="name"><%= member.name %></div>
-      </div>
-    </div>
+    <% end %>
+    <span class="small-gravatar add-new"></span>
+    <%= form_for(:invite, url: invites_create_path, 
+               html: {class: 'invite-form form-inline'}) do |f| %>
+      <%= content_tag :div, class: 'form-group' do %>
+        <%= f.label :email, class: 'sr-only' %>
+        <%= f.text_field :email, class: 'form-control input-sm',
+                               placeholder: 'Enter email' %>
+      <% end %>
+      <%= f.submit "Invite", class: "btn btn-primary btn-xs" %>
     <% end %>
   </div>
-  <div class="col-md-6">
-    <div class="lineup-h3 form-inline">
-      <h3>Invites</h3>
-      <%= form_for(:invite, url: invites_create_path, 
-                 html: {class: 'form-inline'}) do |f| %>
-        <%= content_tag :div, class: 'form-group' do %>
-          <%= f.label :email, class: 'sr-only' %>
-          <%= f.text_field :email, class: 'form-control',
-                                 placeholder: 'Enter email' %>
-        <% end %>
-        <%= f.submit "Invite", class: "btn btn-primary" %>
+</div>
+
+<div class="row">
+  <div class="col-md-6 latest-announcements">
+    <h3>Latest Announcements</h3>
+    <% @announcements.take(3).each do |a| %>
+      <div class="announcement hub">
+        <div class="media">
+          <span class="media-left">
+            <%= gravatar_for a.user, size: 45 %>
+          </span>
+          <span class="media-body">
+            <% if a.user == current_user %>
+              <div class="delete-container">
+                <%= link_to 'Delete announcement', announcements_destroy_path(id: a.id), method: :delete, class: "delete-text" %>
+                <%= link_to 'x', announcements_destroy_path(id: a.id), method: :delete, class: "btn delete-announcement" %>
+              </div>
+            <% end %>
+            <div class="name"><%= a.user.name %></div>
+            <div class="timeago"><%= time_ago_in_words(a.created_at) %> ago</div>
+          </span>
+        </div>
+        <div class="announcement-text hub"><%= a.text %></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-6 latest-payments">
+    <h3>Latest Payments</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Payer</th>
+            <th>Payee</th>
+            <th>Item</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @transactions.take(5).each do |t| %>
+            <tr>
+              <td><%= t.created_at.strftime("%m/%d/%Y") %></td>
+              <td><%= t.payer.name %></td>
+              <td><%= t.payee.name %></td>
+              <td><%= t.transaction_group.name %></td>
+              <% if t.is_payback and t.payer == current_user %>
+                <td class="warning"><%= -t.amount %> </td>
+              <% elsif t.is_payback and t.payer != current_user%>
+                <td class="warning">+<%= t.amount %> </td>
+              <% elsif t.payer == current_user %>
+                <td class="danger"><%= -t.amount %> </td>
+              <% else %>
+                <td class="success">+<%= t.amount %> </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 new-tasks">
+    <h3>New Tasks</h3>
+    <table class="table">
+      <% @tasks.take(3).each do |t| %>
+        <tr>
+          <td>
+            <% if t.completed %>
+              <input type="checkbox" class="checkbox" data-id="<%= t.id %>" checked>
+            <% else %>
+              <input type="checkbox" class="checkbox" data-id="<%= t.id %>">
+            <% end %>
+          </td>
+          <td>
+            <a href="<%= tasks_assign_path(:task_id => t.id) %>">
+            <% if t.user %>
+              <%=  gravatar_for t.user, size: 24 %>
+              <div class = "user" value = "user" title = "Assigned to"><%= t.user.name %></div>
+            <% else %>
+              <div class = "blank-profile" title = "Assign task to yourself"> </div>
+            <% end %>
+            </a>
+          </td>
+          <td>
+            <div class="name" value = "name"><%= t.name %></div>
+          </td>
+          <td>
+            <%= link_to 'x', tasks_delete_path(id: t.id), method: :delete, class: "btn delete-announcement btn btn-xs btn-danger" %>
+          </td>
+        </tr>
       <% end %>
-    </div>
-    <% current_user.household.invites.each do |invite| %>
-      <div class="invite"><%= invite.email %> <small>Pending</small></div>
+    </table>
+  </div>
+  <div class="col-md-6 upcoming-announcements">
+    <h3>Upcoming Events</h3>
+    <% @events.take(3).each do |e| %>
+      <div class="event">
+        <span class="name"><%= e.name %></span>
+        <span class="timeuntil"> in <%= time_ago_in_words(e.start_at) %></span>
+      </div>
     <% end %>
   </div>
 </div>

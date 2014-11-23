@@ -1,4 +1,4 @@
-# Kevin Sung and Andre Haas
+# Kevin Sung, Andre Haas, David Tien
 
 class InvitesController < ApplicationController
   layout 'basic'
@@ -8,11 +8,12 @@ class InvitesController < ApplicationController
     @invite.household = current_user.household
 
     if @invite.save
-      render 'households/show', layout: 'household'
+      flash[:success] = 'Invite sent!'
+      redirect_to homepage_for(current_user)
       InviteMailer.invite_email(@invite, current_user).deliver
     else
-      flash.now[:danger] = 'Email ' + @invite.errors[:email].first
-      render 'households/show', layout: 'household'
+      flash[:danger] = 'Email ' + @invite.errors[:email].first
+      redirect_to homepage_for(current_user)
     end
   end
 

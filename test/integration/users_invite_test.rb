@@ -21,29 +21,28 @@ class UsersInviteTest < ActionDispatch::IntegrationTest
     InviteMailer.stubs(invite_email: message)
 
     post invites_create_path, invite: {email: 'jane@gmail.com', household: @user1.household}
-    assert_template 'households/show'
-    assert_select '[class=invite]' do |elements|
-      assert_select 'div', 'jane@gmail.com Pending'
-    end
+    assert_redirected_to home_path
+    follow_redirect!
+    assert_not flash[:success].empty?
   end
   
   test "two invite" do
     log_in_as @user1, password: 'letmein'
     post invites_create_path, invite: {email: 'jane@example.com', household: @user1.household}
-    assert_template 'households/show'
+    assert_redirected_to home_path
+    follow_redirect!
+    assert_not flash[:success].empty?
     post invites_create_path, invite: {email: 'joe@example.com', household: @user1.household}
-    assert_template 'households/show'
-    assert_select '[class=invite]' do |elements|
-      assert_select 'div', 'jane@example.com Pending'
-      assert_select 'div', 'joe@example.com Pending'
-    end
+    assert_redirected_to home_path
+    follow_redirect!
+    assert_not flash[:success].empty?
   end
   
   test "bad invite" do
     log_in_as @user1, password: 'letmein'
     assert_no_difference 'Invite.count' do 
       post invites_create_path, invite: {email: 'joe@invalid', household: @user1.household}
-      assert_template 'households/show'
+      assert_redirected_to home_path
     end
   end
   
@@ -52,7 +51,7 @@ class UsersInviteTest < ActionDispatch::IntegrationTest
     @email = 'james' * 55 + '@toolong.com' 
     assert_no_difference 'Invite.count' do 
       post invites_create_path, invite: {email: @email, household: @user1.household}
-      assert_template 'households/show'
+      assert_redirected_to home_path
     end
   end
     
