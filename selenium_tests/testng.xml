@@ -2,6 +2,7 @@
 	<test name="Housemates UI Testing">
 		<classes>
 			<class name="housematesAppAutomation.UITestHousemates" />
+			<class name="housematesAppAutomation.UITestHousematesIteration3Features" />
 		</classes>
 	</test>
 </suite>
