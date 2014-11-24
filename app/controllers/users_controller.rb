@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def reset_password
     @token = params[:token]
     @password = params[:password]
-    @password_confirmation = params[:password]
+    @password_confirmation = params[:password_confirmation]
     @user = User.find_by(email: params[:email])
     @res = @user.reset_password(
       @token, @password, @password_confirmation)
