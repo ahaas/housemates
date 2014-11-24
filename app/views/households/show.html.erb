@@ -34,12 +34,6 @@
             <%= gravatar_for a.user, size: 45 %>
           </span>
           <span class="media-body">
-            <% if a.user == current_user %>
-              <div class="delete-container">
-                <%= link_to 'Delete announcement', announcements_destroy_path(id: a.id), method: :delete, class: "delete-text" %>
-                <%= link_to 'x', announcements_destroy_path(id: a.id), method: :delete, class: "btn delete-announcement" %>
-              </div>
-            <% end %>
             <div class="name"><%= a.user.name %></div>
             <div class="timeago"><%= time_ago_in_words(a.created_at) %> ago</div>
           </span>
@@ -96,14 +90,12 @@
             <% end %>
           </td>
           <td>
-            <a href="<%= tasks_assign_path(:task_id => t.id) %>">
             <% if t.user %>
               <%=  gravatar_for t.user, size: 24 %>
               <div class = "user" value = "user" title = "Assigned to"><%= t.user.name %></div>
             <% else %>
               <div class = "blank-profile" title = "Assign task to yourself"> </div>
             <% end %>
-            </a>
           </td>
           <td>
             <div class="name" value = "name"><%= t.name %></div>
