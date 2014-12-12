@@ -35,6 +35,11 @@ class TransactionsController < ApplicationController
       flash[:danger] = transaction_group.errors.messages.keys[0].to_s + " " + 
         transaction_group.errors.messages.values[0][0]
     else
+      if params[:payers].length == 1 and 
+        User.find_by_id(params[:payers].first) == current_user
+        flash[:danger] = "transaction is not created since you are the only payer and payee"
+        return
+      end
       params[:payers].each do |uid|
         payer = User.find_by_id(uid)
         if not payer == current_user
