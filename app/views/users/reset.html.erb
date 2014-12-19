@@ -10,7 +10,7 @@
           <%= label_tag(:password, "Password") %>
           <%= password_field_tag :password, nil, class: 'form-control' %>
           <%= label_tag(:confirmed_password, "Confirmed password") %>
-          <%= password_field_tag :confirmed_password, nil, class: 'form-control' %>
+          <%= password_field_tag :password_confirmation, nil, class: 'form-control' %>
           <%= hidden_field_tag('email', @email) %>
           <%= hidden_field_tag('token', @token) %>
         <% end %>

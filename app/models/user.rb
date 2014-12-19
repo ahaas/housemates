@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
     if self.reset_digest == token and self.password_reset_not_expired?
       self.password = password
       self.password_confirmation = password_confirmation
-      if password == password_confirmation and self.save
+      if (password == password_confirmation) and self.save
         self.reset_digest = nil
         self.reset_sent_at = nil
         self.save
