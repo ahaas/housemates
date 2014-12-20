@@ -8,13 +8,20 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(name: params[:name], completed: false) 
-    @task.household = current_user.household
-    if @task.save
-      flash[:success] = 'New task created'
-      redirect_to tasks_show_path
+    if Task.new(name: params[:name], completed: false).name != ""
+      @task = Task.new(name: params[:name], completed: false)
+      @task.household = current_user.household
+      if @task.save
+        flash[:success] = 'New task created'
+        redirect_to tasks_show_path
+      else
+        flash[:notice] = 'Error: task was NOT created'
+        render tasks_show_path
+      end
     else
-      flash[:notice] = 'Error: task was NOT created'
+      @tasks = current_user.household.tasks.to_a
+                       .sort_by! {:created_at}
+      flash[:danger] = 'Error: task needs name'
       render tasks_show_path
     end
   end
